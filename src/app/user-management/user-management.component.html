@@ -1,0 +1,11 @@
+<p>
+    user-management works!
+</p>
+
+<ul>
+    <li *ngFor="let user of users" (click)="onClick(user.username)">
+        <div *ngIf="user.username === 'user1'">
+            {{ user.username }} | {{ user.password }}
+        </div>
+    </li>
+</ul>
