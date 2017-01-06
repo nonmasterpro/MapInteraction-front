@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/core/theming/all-theme';
+// Plus imports for other components in your app.
+// Include the base styles for Angular Material core. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+@include md-core();
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+// generated from: http://mcg.mbitson.com/#/
+$cws-blue: ( 50: #ebf9ff, 100: #9fe2ff, 200: #67d2ff, 300: #1fbcff, 400: #01b3ff, 500: #009ee1, 600: #0088c2, 700: #0073a4, 800: #005e85, 900: #004867, A100: #ebf9ff, A200: #9fe2ff, A400: #01b3ff, A700: #0073a4, contrast: ( 50: $black-87-opacity, 100: $black-87-opacity, 200: $black-87-opacity, 300: $black-87-opacity, 400: $black-87-opacity, 500: white, 600: white, 700: white, 800: $white-87-opacity, 900: $white-87-opacity, A100: $black-87-opacity, A200: white, A400: white, A700: white, ));
+$cws-grey: ( 50: #d4d4d4, 100: #adadad, 200: #919191, 300: #6e6e6e, 400: #5e5e5e, 500: #4f4f4f, 600: #404040, 700: #303030, 800: #212121, 900: #121212, A100: #d4d4d4, A200: #adadad, A400: #5e5e5e, A700: #303030, contrast: ( 50: $black-87-opacity, 100: $black-87-opacity, 200: $black-87-opacity, 300: $black-87-opacity, 400: $black-87-opacity, 500: white, 600: white, 700: white, 800: $white-87-opacity, 900: $white-87-opacity, A100: $black-87-opacity, A200: white, A400: white, A700: white, ));
+$cws-red: ( 50: #fee9ec, 100: #fba0ab, 200: #f86b7b, 300: #f5263f, 400: #f10b27, 500: #d40a22, 600: #b7091d, 700: #9a0719, 800: #7c0614, 900: #5f040f, A100: #fee9ec, A200: #fba0ab, A400: #f10b27, A700: #9a0719, contrast: ( 50: $black-87-opacity, 100: $black-87-opacity, 200: $black-87-opacity, 300: $black-87-opacity, 400: $black-87-opacity, 500: white, 600: white, 700: white, 800: $white-87-opacity, 900: $white-87-opacity, A100: $black-87-opacity, A200: white, A400: white, A700: white, ));
+$color-primary: md-palette($cws-blue);
+$color-accent: md-palette($cws-grey);
+// The warn palette is optional (defaults to red).
+$color-warn: md-palette($cws-red);
+// Create the theme object (a Sass map containing all of the palettes).
+$cws-theme: md-light-theme($color-primary, $color-accent, $color-warn);
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($cws-theme);
+// ---------------------------------------
+// Application Styles live in `scss` directory
+@import 'scss/base';
+@import 'scss/layout';
+@import 'scss/typography';
+@import 'scss/forms';
