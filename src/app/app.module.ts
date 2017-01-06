@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app.route';
 import { AppConfig } from './app.config';
 
+import { MaterialModule } from '@angular/material';
+
 import { AppComponent } from './app.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 
@@ -18,7 +20,8 @@ import { UserManagementComponent } from './user-management/user-management.compo
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule.forRoot()
   ],
   providers: [
     {

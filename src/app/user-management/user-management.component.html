@@ -1,11 +1,14 @@
-<p>
-    user-management works!
-</p>
-
-<ul>
-    <li *ngFor="let user of users" (click)="onClick(user.username)">
-        <div *ngIf="user.username === 'user1'">
-            {{ user.username }} | {{ user.password }}
-        </div>
-    </li>
-</ul>
+<md-card>
+    <md-card-title>Login</md-card-title>
+    <md-card-content>
+        <md-input-container class="example-full-width">
+            <input md-input placeholder="username">
+        </md-input-container>
+        <md-input-container class="example-full-width">
+            <input md-input placeholder="password">
+        </md-input-container>
+    </md-card-content>
+    <md-card-actions>
+        <button md-button>Login</button>
+    </md-card-actions>
+</md-card>
