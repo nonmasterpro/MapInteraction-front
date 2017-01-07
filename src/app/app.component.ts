@@ -11,7 +11,10 @@ export class AppComponent implements OnInit, AfterViewInit {
   // @ViewChild('userComp') userComp;
 
   title = 'app works!';
-
+  public options = {
+    position: ["top", "right"]
+  }
+  
   constructor(
     private authService: AuthService
     ) {}
