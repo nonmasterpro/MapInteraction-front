@@ -7,6 +7,7 @@ import { DialogLoginComponent } from '../dialog-login/dialog-login.component';
 
 import { MdDialog, MdDialogRef } from '@angular/material';
 
+import { NotificationsService } from 'angular2-notifications';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -20,7 +21,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public dialog: MdDialog,
-    private authService: AuthService
+    private authService: AuthService,
+    private _notificationsService: NotificationsService
   ) { }
 
   ngOnInit() {
@@ -44,6 +46,17 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this._notificationsService.success(
+        'Good bye!',
+        'Logout success!',
+        {
+            timeOut: 3000,
+            showProgressBar: true,
+            pauseOnHover: false,
+            clickToClose: false,
+            maxLength: 100
+        }
+    );
   }
 
 }

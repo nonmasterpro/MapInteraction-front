@@ -21,6 +21,8 @@ import { PlacesManagementComponent } from './places-management/places-management
 import { ManageComponent } from './manage/manage.component';
 import { MemberManagementComponent } from './member-management/member-management.component';
 
+import { SimpleNotificationsModule } from 'angular2-notifications';
+
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
     headerPrefix: 'Bearer',
@@ -47,7 +49,8 @@ export function getAuthHttp(http) {
     AppRoutingModule,
     MaterialModule.forRoot(),
     NgUploaderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SimpleNotificationsModule
   ],
   entryComponents: [
     DialogLoginComponent
