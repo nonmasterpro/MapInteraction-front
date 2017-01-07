@@ -1,0 +1,14 @@
+@import 'colors';
+html,
+body {
+    font-family: 'PT Sans', sans-serif;
+    color: $primary-gray;
+    margin: 0;
+    padding: 0;
+}
+
+[md-button] md-icon,
+[md-icon-button] md-icon {
+    width: 32px;
+    height: 32px;
+}
