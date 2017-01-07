@@ -17,12 +17,13 @@ import { UserManagementComponent }  from './user-management/user-management.comp
 import { DialogLoginComponent } from './dialog-login/dialog-login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
-    tokenName: 'token',
-          tokenGetter: (() => sessionStorage.getItem('id_token')),
-          globalHeaders: [{'Content-Type':'application/json'}],
-     }), http, options);
+    headerPrefix: 'Bearer',
+    noJwtError: true,
+    globalHeaders: [{'Accept': 'application/json'}],
+    tokenGetter: (() => localStorage.getItem('id_token')),
+  }), http);
 }
 
 @NgModule({
@@ -50,7 +51,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AuthService,
     {
       provide: AuthHttp,
-      useFactory: authHttpServiceFactory,
+      useFactory: getAuthHttp,
       deps: [Http, RequestOptions]
     }
 

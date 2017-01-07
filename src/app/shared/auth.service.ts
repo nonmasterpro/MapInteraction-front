@@ -3,6 +3,8 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import { Observable, Subject } from 'rxjs';
 import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 
+import { User } from '../models/user';
+
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -37,14 +39,35 @@ export class AuthService {
 	}
 
 	me() {
-		return this.http.get(
-			this.config.apiEndpoints.me + '?token=' + this.getIdToken()
-		).toPromise()
-			.then((res) => {
-				let ob = res.json();
-				this._me.next(ob.user);
-				return ob;
-			}).catch(this.handleError);
+		// return this.http.get(
+		// 	this.config.apiEndpoints.me + '?token=' + this.getIdToken()
+		// ).toPromise()
+		// 	.then((res) => {
+		// 		let ob = res.json();
+		// 		this._me.next(new User(
+		// 			ob.id,
+		// 			ob.email,
+		// 			ob.name,
+		// 			ob.created_at,
+		// 			ob.updated_at
+		// 		));
+		// 		return ob;
+		// 	}).catch(this.handleError);
+		this.authHttp.get(this.config.apiEndpoints.me).subscribe((res: any) => {
+			let me = JSON.parse(res._body);
+			this._me.next(new User(
+					me.id,
+					me.email,
+					me.name,
+					me.created_at,
+					me.updated_at
+				));
+        });
+	}
+
+	logout() {
+		this.clearIdToken();
+		this._me.next();
 	}
 
 	setIdToken(token) {
