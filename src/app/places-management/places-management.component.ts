@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 
 @Component({
   selector: 'app-places-management',
@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./places-management.component.scss']
 })
 export class PlacesManagementComponent implements OnInit {
+	types = [
+    {value: 't1', viewValue: 'Shop'},
+    {value: 't2', viewValue: 'Building'},
+    {value: 't3', viewValue: 'Faculty'}
+  ];
 
   constructor() { }
 

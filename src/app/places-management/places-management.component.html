@@ -1,3 +1,45 @@
-<md-input-container>
-    <input md-input placeholder="Username">
-</md-input-container>
+<div class="body-container">
+    <h2>Add place</h2>
+</div>
+<div class="body-container">
+    <p>Place name:</p>
+    <md-input-container>
+        <input md-input placeholder="Place Name">
+    </md-input-container>
+    <br>
+    <p>Description:</p>
+    <md-input-container>
+        <input md-input placeholder="Description">
+    </md-input-container>
+    <br>
+    <p>Contact:</p>
+    <md-input-container>
+        <input md-input placeholder="Contact">
+    </md-input-container>
+    <br>
+    <p>Place Type:</p>
+    <md-select placeholder="Place Type">
+        <md-option *ngFor="let type of types" [value]="type.value">
+            {{ type.viewValue }}
+        </md-option>
+    </md-select>
+    <br>
+    <p>Website:</p>
+    <md-input-container>
+        <input md-input placeholder="Website">
+    </md-input-container>
+    <br>
+    <p>X coordinate:</p>
+    <md-input-container>
+        <input md-input placeholder="X">
+    </md-input-container>
+    <br>
+    <p>Y coordinate:</p>
+    <md-input-container>
+        <input md-input placeholder="Y">
+    </md-input-container>
+    <input type="file" ng2FileSelect [uploader]="uploader" />
+</div>
+<div class="footer">
+    <button md-button class="md-raised md-primary">Add</button>
+</div>
