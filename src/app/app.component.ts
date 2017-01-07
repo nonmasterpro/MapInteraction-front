@@ -17,10 +17,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     ) {}
   
   ngOnInit() {
-    this.authService.login({
-      email: 'karjkeng@hotmail.com',
-      password: 'karjkeng'
-    });
+    this.authService.me();
   }
 
   ngAfterViewInit() {
