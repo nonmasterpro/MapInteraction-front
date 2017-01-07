@@ -11,7 +11,6 @@ export class UserManagementComponent implements OnInit {
   // @Input() users: User[];
   // @Output() liClick = new EventEmitter();
 
-  users: User[] = [ new User('user1', 'pass1'),new User('user2', 'pass2') ];
 
   constructor() {}
 

@@ -1,5 +1,8 @@
 <md-toolbar>
     <span>Map Interaction for CMU student</span>
     <span class="fill-remaining-space"></span>
-    <button md-button (click)="openDialog()">Log In</button>
+    <span *ngIf="user"> {{ user.name }} </span>
+    <div class="divider"></div>
+    <button md-button *ngIf="user" (click)="logout()">Log Out</button>
+    <button md-button *ngIf="!user" (click)="openDialog()">Log In</button>
 </md-toolbar>

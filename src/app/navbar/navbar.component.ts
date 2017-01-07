@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../shared/auth.service';
 
-import { DialogLoginComponent} from '../dialog-login/dialog-login.component';
+import { User } from '../models/user';
 
-import { MdDialog,MdDialogRef } from '@angular/material';
+import { DialogLoginComponent } from '../dialog-login/dialog-login.component';
+
+import { MdDialog, MdDialogRef } from '@angular/material';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,13 +14,24 @@ import { MdDialog,MdDialogRef } from '@angular/material';
 })
 export class NavbarComponent implements OnInit {
 
-  dialogRef: MdDialogRef<DialogLoginComponent>; 
- 
-  constructor(public dialog: MdDialog) {}
+  dialogRef: MdDialogRef<DialogLoginComponent>;
+
+  user: User;
+
+  constructor(
+    public dialog: MdDialog,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+
+    this.authService.obMe.subscribe((user: User) => {
+      this.user = user;
+    })
+
   }
-    openDialog() {
+
+  openDialog() {
     this.dialogRef = this.dialog.open(DialogLoginComponent, {
       disableClose: false,
       width: '450px'
@@ -26,4 +41,9 @@ export class NavbarComponent implements OnInit {
       this.dialogRef = null;
     });
   }
+
+  logout() {
+    this.authService.logout();
+  }
+
 }

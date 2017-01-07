@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app.route';
@@ -9,6 +9,7 @@ import { AppConfig } from './app.config';
 import { MaterialModule } from '@angular/material';
 import { provideAuth, AuthHttp, AuthConfig } from 'angular2-jwt';
 import { Http, RequestOptions } from '@angular/http';
+import { NgUploaderModule } from 'ngx-uploader';
 
 import { AuthService } from './shared/auth.service';
 
@@ -17,13 +18,16 @@ import { UserManagementComponent }  from './user-management/user-management.comp
 import { DialogLoginComponent } from './dialog-login/dialog-login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PlacesManagementComponent } from './places-management/places-management.component';
+import { ManageComponent } from './manage/manage.component';
+import { MemberManagementComponent } from './member-management/member-management.component';
 
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
-    tokenName: 'token',
-          tokenGetter: (() => sessionStorage.getItem('id_token')),
-          globalHeaders: [{'Content-Type':'application/json'}],
-     }), http, options);
+    headerPrefix: 'Bearer',
+    noJwtError: true,
+    globalHeaders: [{'Accept': 'application/json'}],
+    tokenGetter: (() => localStorage.getItem('id_token')),
+  }), http);
 }
 
 @NgModule({
@@ -32,7 +36,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     UserManagementComponent,
     PlacesManagementComponent,
     DialogLoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    ManageComponent,
+    MemberManagementComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +46,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     HttpModule,
     AppRoutingModule,
     MaterialModule.forRoot(),
+    NgUploaderModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     DialogLoginComponent
@@ -52,7 +60,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     AuthService,
     {
       provide: AuthHttp,
-      useFactory: authHttpServiceFactory,
+      useFactory: getAuthHttp,
       deps: [Http, RequestOptions]
     }
 

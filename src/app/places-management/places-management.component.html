@@ -38,7 +38,12 @@
     <md-input-container>
         <input md-input placeholder="Y">
     </md-input-container>
-    <input type="file" ng2FileSelect [uploader]="uploader" />
+    <input type="file"
+       ngFileSelect
+       [options]="options"
+       (onUpload)="handleUpload($event)"
+       (beforeUpload)="beforeUpload($event)">
+       Response: {{ uploadFile | json }}
 </div>
 <div class="footer">
     <button md-button class="md-raised md-primary">Add</button>
