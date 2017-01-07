@@ -1,0 +1,31 @@
+<div>
+
+	<span *ngIf="options.action === 'add'">ADD</span>
+	<span *ngIf="options.action === 'edit'">EDIT</span>
+	{{ options.title }}
+
+</div>
+
+<form [formGroup]="formManage">
+	
+	<div *ngFor=" let p of options.params ">
+		<div *ngIf="p.type === 'text'">
+			<label>{{ p.name }}</label>
+			<input type="text" [formControlName]="p.name" name="{{ p.name }}" [(ngModel)]="p.value"> 
+			
+			<div *ngIf="!formManage.controls[ p.name ].valid && !formManage.controls[ p.name ]._pristine">plz</div>
+		</div>
+		<div *ngIf="p.type === 'selection'">
+			<label>{{ p.name }}</label>
+			<select>
+			<option></option>
+				<option value="{{ s.value }}" *ngFor="let s of p.selections">{{ s.name }}</option>
+			</select>
+		</div>
+		<hr>
+	</div>
+	{{ formManage.valid }}
+
+</form>
+
+
