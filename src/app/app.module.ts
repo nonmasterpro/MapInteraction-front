@@ -18,7 +18,6 @@ import { DialogLoginComponent } from './dialog-login/dialog-login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { ToastNotificationsComponent } from './toast-notifications/toast-notifications.component';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -34,8 +33,7 @@ export function getAuthHttp(http) {
     AppComponent,
     UserManagementComponent,
     DialogLoginComponent,
-    NavbarComponent,
-    ToastNotificationsComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
