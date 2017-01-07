@@ -10,11 +10,13 @@ import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { PlacesManagementComponent } from './places-management/places-management.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    PlacesManagementComponent
   ],
   imports: [
     BrowserModule,
