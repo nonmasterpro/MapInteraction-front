@@ -20,6 +20,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.authService.login({
       email: 'karjkeng@hotmail.com',
       password: 'karjkeng'
+    }).then(res => {
+      console.log(res);
     });
   }
 
