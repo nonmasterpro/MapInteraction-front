@@ -17,6 +17,8 @@ import { UserManagementComponent }  from './user-management/user-management.comp
 import { DialogLoginComponent } from './dialog-login/dialog-login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
+import { SimpleNotificationsModule } from 'angular2-notifications';
+
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
     headerPrefix: 'Bearer',
@@ -39,6 +41,7 @@ export function getAuthHttp(http) {
     HttpModule,
     AppRoutingModule,
     MaterialModule.forRoot(),
+    SimpleNotificationsModule
   ],
   entryComponents: [
     DialogLoginComponent
