@@ -1,0 +1,24 @@
+.breadcrumb {
+    margin: 10px 0px;
+    a {
+        text-decoration: none;
+    }
+    a:before {
+        content: ' / ';
+    }
+    a:first-child:before {
+        content: '';
+    }
+    a:last-child {
+        color: #ccc;
+    }
+}
+
+.place-detail {
+    width: 100%;
+    height: 100%;
+}
+
+.place-img {
+    align-items: flex-start;
+}
