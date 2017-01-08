@@ -1,16 +1,12 @@
-md-divider {
-    display: block;
-    border-top-style: solid;
-    border-top-width: 1px;
-    margin: 5px;
-}
-
 .body-container {
     padding: 5px 55px;
     >h2 {
         color: #6C7A89;
         border-bottom-style: solid;
         border-bottom-width: 1px;
+    }
+    > img {
+        width:100%;
     }
 }
 

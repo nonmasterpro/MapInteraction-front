@@ -1,7 +1,21 @@
+.body-content {
+    padding: 20px 55px;
+}
+
+md-divider {
+    display: block;
+    border-top-style: solid;
+    border-top-width: 1px;
+    margin: 20px 0px;
+}
+
 .fill-remaining-space {
     flex: 1 1 auto;
 }
 
 .md-dialog-container {
-	padding: 0 24px 24px 24px;
+    padding: 0 24px 24px 24px;
+}
+md-grid-list {
+	border: none;
 }
