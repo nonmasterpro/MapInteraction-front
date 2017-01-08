@@ -14,11 +14,15 @@
     }
 }
 
-.place-detail {
-    width: 100%;
-    height: 100%;
-}
-
-.place-img {
-    align-items: flex-start;
+.place-list {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    .place-detail {
+        width: 100%;
+        margin-left: 10px;
+    }
+    .place-img {
+        margin: 0px!important;
+        width: 750px;
+        height: 300px;
+    }
 }

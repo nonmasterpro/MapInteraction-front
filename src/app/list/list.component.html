@@ -7,18 +7,17 @@
     	</a>
     </md-toolbar>
     <h3 md-header>Place list</h3>
-    <md-grid-list cols="3" rowHeight="300px">
-        <md-grid-tile [colspan]="2" [rowspan]="3">
+    <md-grid-list class="place-list" cols="3" rowHeight="200px" *ngFor="let detail of options.details">
+        <md-grid-tile [colspan]="2" [rowspan]="2" [style.background]='lightblue'>
             <md-card class="place-img">
-                    <img md-card-image src="assets/img/IU.jpg">
-
+                <img md-card-image class="place-img" [src]="detail.image">
             </md-card>
         </md-grid-tile>
-        <md-grid-tile  [colspan]="1" [rowspan]="1">
+        <md-grid-tile [colspan]="1" [rowspan]="2">
             <md-card class="place-detail">
                 <md-card-content>
                     <md-list>
-                        <div *ngFor="let detail of options.details">
+                        <div>
                             <p md-line>
                                 Name : {{detail.Name}}
                             </p>
@@ -27,6 +26,9 @@
                             </p>
                             <p md-line>
                                 Contact: {{detail.Contact}}
+                            </p>
+                            <p md-line>
+                                Website: {{detail.Website}}
                             </p>
                             <p md-line>
                                 Type: {{detail.Type}}

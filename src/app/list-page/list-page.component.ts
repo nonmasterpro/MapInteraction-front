@@ -15,20 +15,13 @@ export class ListPageComponent implements OnInit {
   			'link': '/'
   		}, {
   			'name': 'Manage Page',
-  			'link': '/placeManagement'
-  		}, {
-  			'name': '1111 Page',
-  			'link': '/8'
-  		}, {
-  			'name': '22222 Page',
-  			'link': '/9'
+  			'link': '/placelist'
   		}
   	],
 
     'tiles': [
       { 'cols': 3, 
-        'rows': 5, 
-        'img':'assets/img/IU.jpg'
+        'rows': 5,
       },
       { 
         'cols': 1, 
@@ -37,13 +30,26 @@ export class ListPageComponent implements OnInit {
     ],
 
     'details' : [
-      { 'Name':'CAMT1', 
-        'Description' : 'camt22', 
+      { 
+        'Name':'CAMT1', 
+        'Description' : 'camt111', 
         'Contact':'111', 
         'Type' :'buiding', 
         'Website' :'google.com', 
         'CoordinateX':'1111', 
-        'CoordinateY':' 1111'}
+        'CoordinateY':' 1111',
+        'image':'assets/img/IU.jpg',
+      },
+      {
+        'Name':'CAMT2222', 
+        'Description' : 'camt22222', 
+        'Contact':'222', 
+        'Type' :'buiding', 
+        'Website' :'google.com', 
+        'CoordinateX':'222', 
+        'CoordinateY':' 222',
+        'image':'assets/img/IU2.jpg'
+      }
      ]
 
   }
