@@ -20,6 +20,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PlacesManagementComponent } from './places-management/places-management.component';
 import { ManageComponent } from './manage/manage.component';
 import { MemberManagementComponent } from './member-management/member-management.component';
+import { ListComponent } from './list/list.component';
+import { ListPageComponent } from './list-page/list-page.component';
+
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
@@ -40,7 +43,9 @@ export function getAuthHttp(http) {
     DialogLoginComponent,
     NavbarComponent,
     ManageComponent,
-    MemberManagementComponent
+    MemberManagementComponent,
+    ListComponent,
+    ListPageComponent
   ],
   imports: [
     BrowserModule,

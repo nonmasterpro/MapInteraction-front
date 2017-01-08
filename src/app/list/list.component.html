@@ -1,0 +1,48 @@
+<div class="body-content">
+    <h2> Manage page</h2>
+    <md-divider></md-divider>
+    <md-toolbar class="breadcrumb">
+        <a [href]="b.link" *ngFor="let b of options.breadcrumb">
+    		{{ b.name }}	&nbsp;
+    	</a>
+    </md-toolbar>
+    <h3 md-header>Place list</h3>
+    <md-grid-list class="place-list" cols="3" rowHeight="200px" *ngFor="let detail of options.details">
+        <md-grid-tile [colspan]="2" [rowspan]="2" [style.background]='lightblue'>
+            <md-card class="place-img">
+                <img md-card-image class="place-img" [src]="detail.image">
+            </md-card>
+        </md-grid-tile>
+        <md-grid-tile [colspan]="1" [rowspan]="2">
+            <md-card class="place-detail">
+                <md-card-content>
+                    <md-list>
+                        <div>
+                            <p md-line>
+                                Name : {{detail.Name}}
+                            </p>
+                            <p md-line>
+                                Description :{{detail.Description}}
+                            </p>
+                            <p md-line>
+                                Contact: {{detail.Contact}}
+                            </p>
+                            <p md-line>
+                                Website: {{detail.Website}}
+                            </p>
+                            <p md-line>
+                                Type: {{detail.Type}}
+                            </p>
+                            <p md-line>
+                                CoordinateX: {{detail.CoordinateX}}
+                            </p>
+                            <p md-line>
+                                CoordinateY: {{detail.CoordinateY}}
+                            </p>
+                        </div>
+                    </md-list>
+                </md-card-content>
+            </md-card>
+        </md-grid-tile>
+    </md-grid-list>
+</div>
