@@ -14,15 +14,24 @@
     }
 }
 
-.place-list {
+.list {
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    table {
+        width: 100%;
+        tr {
+            text-align: center;
+            td {
+                padding: 10px 5px;
+            }
+        }
+    }
     .place-detail {
         width: 100%;
         margin-left: 10px;
     }
-    .place-img {
+    .place-img img {
         margin: 0px!important;
-        width: 750px;
-        height: 300px;
+        width: 100%;
+        height: 130px;
     }
 }

@@ -35,24 +35,45 @@
       {      
             'headers':[
             {
-                 'name':'Image'
+                 'prop': 'image',
+                 'type': 'image',
+                 'name':'Image',
+                 'maxWidth':'300'
             },
             {
-                 'name':'Name'
+                 'prop': 'name',
+                 'type': 'text',
+                 'name':'Name',
+                 'maxWidth':'150'
             },
             {
+                 'prop': 'description',
+                 'type': 'text',
+                 'name':'Description'
+            },
+            {
+                 'prop': 'contact',
+                 'type': 'text',
                  'name':'Cotact'
             },
             {
+                 'prop': 'type',
+                 'type': 'text',
                  'name':'Type'
             },
             {
+                 'prop': 'website',
+                 'type': 'text',
                  'name':'Website'
             },
             {
+                 'prop': 'coordinateX',
+                 'type': 'text',
                  'name':'Coordinate X'
             },
             {
+                 'prop': 'coordinateY',
+                 'type': 'text',
                  'name':'Coordinate Y'
             },
             ],
@@ -61,7 +82,7 @@
             {      
                  'image':'assets/img/IU.jpg',
                  'name':'CAMT1', 
-                 'description' : 'camt111', 
+                 'description' : 'des1', 
                  'contact':'111', 
                  'type' :'buiding', 
                  'website' :'google.com', 
@@ -72,7 +93,7 @@
 
                  'image':'assets/img/IU2.jpg',
                  'name':'CAMT2', 
-                 'description' : '222222', 
+                 'description' : 'des22', 
                  'contact':'22222', 
                  'type' :'buiding222', 
                  'website' :'google.com22', 
