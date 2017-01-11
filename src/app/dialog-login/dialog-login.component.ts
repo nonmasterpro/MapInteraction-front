@@ -41,7 +41,10 @@ export class DialogLoginComponent implements OnInit {
 		);
 
     }).catch(res => {
-      let error = JSON.parse( res._body ).error;
+      let error = {};
+      if( typeof res._body !==  'object' ) {
+        error = JSON.parse( res._body );
+      }
       
       this._notificationsService.error(
 		    'Error',

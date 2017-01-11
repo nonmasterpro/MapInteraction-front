@@ -21,7 +21,7 @@ import { PlacesManagementComponent } from './places-management/places-management
 import { ManageComponent } from './manage/manage.component';
 import { MemberManagementComponent } from './member-management/member-management.component';
 import { ListComponent } from './list/list.component';
-import { ListPageComponent } from './list-page/list-page.component';
+import { ListplaceComponent } from './list-place/list-place.component';
 
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
@@ -45,7 +45,7 @@ export function getAuthHttp(http) {
     ManageComponent,
     MemberManagementComponent,
     ListComponent,
-    ListPageComponent
+    ListplaceComponent
   ],
   imports: [
     BrowserModule,
