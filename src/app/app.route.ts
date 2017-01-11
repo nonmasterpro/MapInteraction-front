@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { PlacesManagementComponent } from './places-management/places-management.component';
 import { MemberManagementComponent } from './member-management/member-management.component';
-import { ListPageComponent } from './list-page/list-page.component';
+import { ListplaceComponent } from './list-place/list-place.component';
 
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -22,8 +22,8 @@ const appRoutes: Routes = [
       component : PlacesManagementComponent
     },
     {
-      path: 'placelist',
-      component: ListPageComponent
+      path: 'list/:action',
+      component: ListplaceComponent
     },
     { 
       path: '**', 
