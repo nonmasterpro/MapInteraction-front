@@ -1,35 +1,39 @@
 <div class="body-content">
-    <h2 *ngIf="options.action === 'place'"> Manage {{options.title}}</h2>
-    <h2 *ngIf="options.action === 'user'"> Manage User</h2>
-    <md-divider></md-divider>
-    <md-toolbar class="breadcrumb">
-        <a [href]="b.link" *ngFor="let b of options.breadcrumb">
+  <h2 *ngIf="options.action === 'place'"> Manage {{options.title}}</h2>
+  <h2 *ngIf="options.action === 'user'"> Manage User</h2>
+  <md-divider></md-divider>
+  <md-toolbar class="breadcrumb">
+    <a [href]="b.link" *ngFor="let b of options.breadcrumb">
             {{ b.name }}    &nbsp;
         </a>
-    </md-toolbar>
-    <div *ngIf="options.action === 'place'" class="list">
-        <h3 md-header>{{options.title}} list</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th *ngFor="let header of options.params.headers" [style.width.px]="header.maxWidth">
-                        {{header.name}}
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let detail of options.params.details">
-                    <td *ngFor="let header of options.params.headers">
-                        <div *ngIf=" header.type === 'image' ">
-                            <md-card class="place-img">
-                                <img md-card-image [src]="detail[header.prop]">
-                            </md-card>
-                        </div>
-                        <div *ngIf=" header.type === 'text' ">
-                            {{ detail[header.prop] }}
-                        </div>
-                    </td>
-                </tr>
-        </table>
-    </div>
+  </md-toolbar>
+  <div *ngIf="options.action === 'place'" class="list">
+    <h3 md-header>{{options.title}} list</h3>
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let header of options.params.headers" [style.width.px]="header.maxWidth">
+            {{header.name}}
+          </th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row" *ngFor="let detail of options.params.details">
+          <td *ngFor="let header of options.params.headers">
+            <div *ngIf=" header.type === 'image' ">
+              <md-card class="place-img">
+                <img md-card-image [src]="detail[header.prop]">
+              </md-card>
+            </div>
+            <div *ngIf=" header.type === 'text' ">
+              {{ detail[header.prop] }}
+            </div>
+          </td>
+            <td><button md-raised-button ><i class="material-icons">edit</i></button></td>
+            <td><button md-raised-button color="warn"><i class="material-icons">delete</i></button></td>
+        </tr>
+    </table>
+  </div>
 </div>
