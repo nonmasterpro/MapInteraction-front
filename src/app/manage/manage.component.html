@@ -1,31 +1,39 @@
-<div>
-
-	<span *ngIf="options.action === 'add'">ADD</span>
-	<span *ngIf="options.action === 'edit'">EDIT</span>
-	{{ options.title }}
-
+<div class="body-container">
+    <h2 *ngIf="options.action === 'add'">ADD {{options.title}}</h2>
+    <h2 *ngIf="options.action === 'edit'">EDIT {{options.title}}</h2>
 </div>
-
-<form [formGroup]="formManage">
-	
-	<div *ngFor=" let p of options.params ">
-		<div *ngIf="p.type === 'text'">
-			<label>{{ p.name }}</label>
-			<input type="text" [formControlName]="p.name" name="{{ p.name }}" [(ngModel)]="p.value"> 
-			
-			<div *ngIf="!formManage.controls[ p.name ].valid && !formManage.controls[ p.name ]._pristine">plz</div>
-		</div>
-		<div *ngIf="p.type === 'selection'">
-			<label>{{ p.name }}</label>
-			<select>
-			<option></option>
-				<option value="{{ s.value }}" *ngFor="let s of p.selections">{{ s.name }}</option>
-			</select>
-		</div>
-		<hr>
-	</div>
-	{{ formManage.valid }}
-
-</form>
-
-
+<div class="body-container">
+    <form [formGroup]="formManage">
+        <div *ngFor=" let p of options.params ">
+            <div *ngIf="p.type === 'text'">
+                <label>{{ p.name }}</label>
+                <br>
+                <md-input-container>
+                    <input md-input placeholder="{{p.name}}" [formControlName]="p.name" name="{{p.name}}" [(ngModel)]="p.value">
+                </md-input-container>
+                <!-- <input type="text" [formControlName]="p.name" name="{{ p.name }}" [(ngModel)]="p.value"> -->
+                <div *ngIf="!formManage.controls[ p.name ].valid && !formManage.controls[ p.name ]._pristine">plz</div>
+            </div>
+            <div *ngIf="p.type === 'selection'">
+                <!-- <label>{{ p.name }}</label> -->
+                <br>
+                <md-select placeholder="{{ p.name }}">
+                    <md-option *ngFor="let s of p.selections" [value]=" s.value ">
+                        {{ s.name }}
+                    </md-option>
+                </md-select>
+                <!-- <select>
+                <option></option>
+                <option value="{{ s.value }}" *ngFor="let s of p.selections">{{ s.name }}</option>
+            </select> -->
+            </div>
+            <div *ngIf="p.type === 'file'">
+                <input type="file" ngFileSelect [options]="picture" (onUpload)="handleUpload($event)" (beforeUpload)="beforeUpload($event)"> Response: {{ uploadFile | json }}
+            </div>
+            <hr>
+        </div>
+        {{ formManage.valid }}
+    </form>
+    <button *ngIf="options.action === 'add'" md-button (click)="add()" class="md-raised md-primary">Add</button>
+    <button *ngIf="options.action === 'edit'" md-button class="md-raised md-primary">Edit</button>
+</div>
