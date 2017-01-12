@@ -1,8 +1,6 @@
 import { Component, OnInit, Input,Pipe, PipeTransform } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { KeysPipe } from '../keys.pipe';
-
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',

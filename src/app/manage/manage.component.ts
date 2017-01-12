@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { NgUploaderOptions } from 'ngx-uploader';
 
 @Component({
   selector: 'app-manage',
@@ -27,6 +28,34 @@ export class ManageComponent implements OnInit {
   		this.formManage.addControl(p.name, p.control);
   	});
   	console.log( this.formManage.controls['name'] );
+  }
+
+  uploadFile: any;
+  hasBaseDropZoneOver: boolean = false;
+  picture: NgUploaderOptions = new NgUploaderOptions({
+    url: 'http://localhost:10050/upload'
+  });
+
+  sizeLimit = 2000000;
+
+  handleUpload(data): void {
+    console.log(data);
+    if (data && data.response) {
+      data = JSON.parse(data.response);
+      this.uploadFile = data;
+    }
+  }
+
+  fileOverBase(e:any):void {
+    console.log(e);
+    this.hasBaseDropZoneOver = e;
+  }
+
+  beforeUpload(uploadingFile): void {
+    if (uploadingFile.size > this.sizeLimit) {
+      uploadingFile.setAbort();
+      alert('File is too large');
+    }
   }
 
 }

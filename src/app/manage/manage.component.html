@@ -27,8 +27,13 @@
                 <option value="{{ s.value }}" *ngFor="let s of p.selections">{{ s.name }}</option>
             </select> -->
             </div>
+            <div *ngIf="p.type === 'file'">
+                <input type="file" ngFileSelect [options]="picture" (onUpload)="handleUpload($event)" (beforeUpload)="beforeUpload($event)"> Response: {{ uploadFile | json }}
+            </div>
             <hr>
         </div>
         {{ formManage.valid }}
     </form>
+    <button *ngIf="options.action === 'add'" md-button (click)="add()" class="md-raised md-primary">Add</button>
+    <button *ngIf="options.action === 'edit'" md-button class="md-raised md-primary">Edit</button>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Params, ActivatedRoute } from '@angular/router';
+import { Router, Params, ActivatedRoute } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,8 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./member-management.component.scss']
 })
 export class MemberManagementComponent implements OnInit {
+
+	id: number;
 
 	options = {
 		'title': 'Member',
@@ -53,18 +55,29 @@ export class MemberManagementComponent implements OnInit {
 						'value': 'female'
 					}
 				]
+			},
+			{
+				'name': 'Picture',
+				'type': 'file',
+				'value': ''
 			}
 		]
 	};
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
     ) { }
 
   ngOnInit() {
-  	this.route.params.forEach((param: Params) => {
-  		this.options.action = param['action'];
-  	});
+  	if( this.router.url.includes('edit') ) {
+	  	this.route.params.forEach((param: Params) => {
+	  		this.id = param['id'];
+	  		this.options.action = 'edit'
+	  	});
+  	} else {
+	  	this.options.action = 'add';
+  	}
   }
 
 }
