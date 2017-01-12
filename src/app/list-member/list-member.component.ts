@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, Params, ActivatedRoute } from '@angular/router';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-list-member',
@@ -7,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListMemberComponent implements OnInit {
 
+  data: any;
   options = {
     'title': 'Member',
     'action': 'member',
@@ -20,21 +23,14 @@ export class ListMemberComponent implements OnInit {
     		}
     ],
 
-    'tiles': [
-      {
-        'cols': 3,
-        'rows': 5,
-      },
-      {
-        'cols': 1,
-        'rows': 5,
-      },
-    ],
-
     'params':
     {
       'headers': [
-
+        {
+          'prop': 'id',
+          'type': 'text',
+          'name': 'ID'
+        },
         {
           'prop': 'name',
           'type': 'text',
@@ -61,30 +57,20 @@ export class ListMemberComponent implements OnInit {
           'type': 'text',
           'name': 'Role'
         }
-      ],
-
-      'details': [
-        {
-          'name': 'admin',
-          'username': 'admin1',
-          'email': 'admin@admin.com',
-          'password': '12345',
-          'role': 'Admin'
-        },
-        {
-          'name': 'user',
-          'username': 'user1',
-          'email': 'user@user.com',
-          'password': '12345',
-          'role': 'user'
-        }]
+      ]
     }
   };
 
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService) { }
 
   ngOnInit() {
+    this.userService.all().then((res) => {
+      this.data = res;
+    });
   }
 
 }

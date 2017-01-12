@@ -9,6 +9,7 @@ import { FormGroup } from '@angular/forms';
 export class ListComponent implements OnInit {
 
   @Input() options;
+  @Input() details: any;
   formList: FormGroup;
 
   constructor() { }
