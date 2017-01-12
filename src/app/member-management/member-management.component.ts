@@ -61,7 +61,24 @@ export class MemberManagementComponent implements OnInit {
 				'type': 'file',
 				'value': ''
 			}
-		]
+		],
+
+		'details': [
+        {
+          'id': '1',
+          'name': 'qq',
+          'last': 'des1',
+          'gender': 'male',
+          'test': 'buiding'
+        },
+        {
+
+          'id': '2',
+          'name': 'ww',
+          'last': 'des2',
+          'gender': 'female',
+          'test': 'buiding'
+        }]
 	};
 
   constructor(
