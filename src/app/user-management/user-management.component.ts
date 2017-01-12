@@ -22,6 +22,7 @@ export class UserManagementComponent implements OnInit {
     this.authService.obMe.subscribe((user: User) => {
       this.user = user;
     })
+    
   }
 
   onClick(un) {

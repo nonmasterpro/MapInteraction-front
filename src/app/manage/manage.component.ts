@@ -10,6 +10,7 @@ import { NgUploaderOptions } from 'ngx-uploader';
 export class ManageComponent implements OnInit {
 
 	@Input() options;
+  @Input() detail: any;
 	formManage: FormGroup;
 
   constructor() { }
@@ -27,7 +28,6 @@ export class ManageComponent implements OnInit {
 
   		this.formManage.addControl(p.name, p.control);
   	});
-  	console.log( this.formManage.controls['name'] );
   }
 
   uploadFile: any;

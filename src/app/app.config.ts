@@ -1,6 +1,7 @@
 let endpoints = {
     login: '/api/auth',
-    me: '/api/user'
+    me: '/api/user',
+    users: '/api/users',
 };
 
 if (window && (window.location.hostname === 'localhost' || /0\.0\./.test(window.location.hostname))) {
