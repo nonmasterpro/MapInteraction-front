@@ -19,6 +19,10 @@ const appRoutes: Routes = [
       component: MemberManagementComponent
     },
     {
+      path: 'member/edit/:id',
+      component: MemberManagementComponent
+    },
+    {
       path:'test',
       component : PlacesManagementComponent
     },

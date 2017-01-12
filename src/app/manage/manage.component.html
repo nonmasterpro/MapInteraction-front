@@ -4,6 +4,11 @@
 </div>
 <div class="body-container">
     <form [formGroup]="formManage">
+        <div>
+            <div>
+                {{detail?.name}}
+            </div>
+        </div>
         <div *ngFor=" let p of options.params ">
             <div *ngIf="p.type === 'text'">
                 <label>{{ p.name }}</label>

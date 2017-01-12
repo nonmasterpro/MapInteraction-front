@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-member-management',
@@ -17,42 +18,43 @@ export class MemberManagementComponent implements OnInit {
 		'action': 'add',
 		'params': [
 			{
-				'name': 'name',
+				'name': 'Name',
+				'type': 'text',
+				'value': '',
+				'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
+				'prop': 'name'
+			},
+			{
+				'name': 'Username',
+				'type': 'text',
+				'value': '',
+				'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
+				'prop': 'username'
+			},
+			{
+				'name': 'Email',
+				'type': 'text',
+				'value': '',
+				'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
+				'prop': 'email'
+			},
+			{
+				'name': 'Password',
 				'type': 'text',
 				'value': '',
 				'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)])
 			},
 			{
-				'name': 'last',
-				'type': 'text',
-				'value': '',
-				'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(3)])
-			},
-			{
-				'name': 'gender',
+				'name': 'Role',
 				'type': 'selection',
 				'selections': [
 					{
-						'name': 'Male',
-						'value': 'male'
+						'name': 'Admin',
+						'value': 'admin'
 					},
 					{
-						'name': 'Female',
-						'value': 'female'
-					}
-				]
-			},
-			{
-				'name': 'test',
-				'type': 'selection',
-				'selections': [
-					{
-						'name': 'Male',
-						'value': 'male'
-					},
-					{
-						'name': 'Female',
-						'value': 'female'
+						'name': 'User',
+						'value': 'user'
 					}
 				]
 			},
@@ -64,15 +66,24 @@ export class MemberManagementComponent implements OnInit {
 		]
 	};
 
+	data: any;
+
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private userService: UserService
     ) { }
 
   ngOnInit() {
   	if( this.router.url.includes('edit') ) {
 	  	this.route.params.forEach((param: Params) => {
 	  		this.id = param['id'];
+	  		this.userService.get( this.id ).then((res) => {
+	  			this.data = res;
+	  			this.options.params.forEach((p: any) => {
+	  				p.value = this.data[ p.prop ] || '';
+	  			})
+	  		});
 	  		this.options.action = 'edit'
 	  	});
   	} else {

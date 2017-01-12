@@ -12,6 +12,7 @@ import { Http, RequestOptions } from '@angular/http';
 import { NgUploaderModule } from 'ngx-uploader';
 
 import { AuthService } from './shared/auth.service';
+import { UserService } from './shared/user.service';
 
 import { AppComponent } from './app.component';
 import { UserManagementComponent }  from './user-management/user-management.component';
@@ -72,8 +73,8 @@ export function getAuthHttp(http) {
       provide: AuthHttp,
       useFactory: getAuthHttp,
       deps: [Http, RequestOptions]
-    }
-
+    },
+    UserService
   ],
   bootstrap: [AppComponent]
 })
