@@ -4,6 +4,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { PlacesManagementComponent } from './places-management/places-management.component';
 import { MemberManagementComponent } from './member-management/member-management.component';
 import { ListplaceComponent } from './list-place/list-place.component';
+import { ListMemberComponent } from './list-member/list-member.component';
 
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -14,24 +15,24 @@ const appRoutes: Routes = [
       component: UserManagementComponent
     },
     {
-      path: 'member/add',
+      path: 'member/:action',
       component: MemberManagementComponent
     },
     {
-      path: 'member/edit/:id',
-      component: MemberManagementComponent
-    },
-    { 
       path:'test',
       component : PlacesManagementComponent
     },
     {
-      path: 'list/:action',
+      path: 'place',
       component: ListplaceComponent
     },
-    { 
-      path: '**', 
-      component: UserManagementComponent 
+    {
+      path: 'member',
+      component: ListMemberComponent
+    },
+    {
+      path: '**',
+      component: UserManagementComponent
     }
 ];
 
