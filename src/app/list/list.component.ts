@@ -18,14 +18,14 @@ export class ListComponent implements OnInit {
   }
 
   setupForm() {
-  	this.formList = new FormGroup({});
-  	this.options.params.headers.forEach((p) => {
-  		if( p.type !== 'text' ) {
-  			return;
-  		}
+  	// this.formList = new FormGroup({});
+  	// this.options.params.headers.forEach((p) => {
+  	// 	if( p.type !== 'text' ) {
+  	// 		return;
+  	// 	}
 
-  	this.formList.addControl(p.name, p.control);
-  	});
+  	// this.formList.addControl(p.name, p.control);
+  	// });
   }
 
 }
