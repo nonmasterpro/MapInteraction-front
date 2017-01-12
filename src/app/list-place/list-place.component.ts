@@ -36,6 +36,11 @@ export class ListplaceComponent implements OnInit {
     {
       'headers': [
         {
+          'prop': 'id',
+          'type': 'text',
+          'name': 'id'
+        },
+        {
           'prop': 'image',
           'type': 'image',
           'name': 'Image',
@@ -81,6 +86,7 @@ export class ListplaceComponent implements OnInit {
 
       'details': [
         {
+          'id':'1',
           'image': 'assets/img/IU.jpg',
           'name': 'CAMT1',
           'description': 'des1',
@@ -91,7 +97,7 @@ export class ListplaceComponent implements OnInit {
           'coordinateY': ' 1111'
         },
         {
-
+          'id':'2',
           'image': 'assets/img/IU2.jpg',
           'name': 'CAMT2',
           'description': 'des22',

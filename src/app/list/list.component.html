@@ -1,6 +1,6 @@
 <div class="body-content">
   <h2 *ngIf="options.action === 'place'"> Manage {{options.title}}</h2>
-  <h2 *ngIf="options.action === 'user'"> Manage {{options.title}}</h2>
+  <h2 *ngIf="options.action === 'member'"> Manage {{options.title}}</h2>
   <md-divider></md-divider>
   <md-toolbar class="breadcrumb">
     <a [href]="b.link" *ngFor="let b of options.breadcrumb">
@@ -20,7 +20,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="row" *ngFor="let detail of options.params.details">
+        <tr class="row" *ngFor="let detail of details">
           <td *ngFor="let header of options.params.headers">
             <div *ngIf=" header.type === 'image' ">
               <md-card class="place-img">
@@ -31,8 +31,8 @@
               {{ detail[header.prop] }}
             </div>
           </td>
-            <td><button md-raised-button ><i class="material-icons">edit</i></button></td>
-            <td><button md-raised-button color="warn"><i class="material-icons">delete</i></button></td>
+            <td><button md-raised-button [routerLink]="['edit',detail.id]"><i class="material-icons">edit</i></button></td>
+            <td><button md-raised-button (click)="delete()" color="warn"><i class="material-icons">delete</i></button></td>
         </tr>
     </table>
   </div>
