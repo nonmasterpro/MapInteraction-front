@@ -35,7 +35,7 @@ export class ListMemberComponent implements OnInit {
           'prop': 'name',
           'type': 'text',
           'name': 'Name',
-          'maxWidth': '150'
+          'maxWidth': '250'
         },
         {
           'prop': 'username',
