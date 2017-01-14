@@ -5,7 +5,7 @@ import { PlacesManagementComponent } from './places-management/places-management
 import { MemberManagementComponent } from './member-management/member-management.component';
 import { ListplaceComponent } from './list-place/list-place.component';
 import { ListMemberComponent } from './list-member/list-member.component';
-
+import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -33,6 +33,10 @@ const appRoutes: Routes = [
     {
       path: 'member',
       component: ListMemberComponent
+    },
+    {
+      path:'schedule',
+      component: ScheduleManagementComponent
     },
     {
       path: '**',
