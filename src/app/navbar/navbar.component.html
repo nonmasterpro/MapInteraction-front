@@ -1,8 +1,12 @@
 <md-toolbar>
-    <span>Map Interaction for CMU student</span>
-    <span class="fill-remaining-space"></span>
-    <span *ngIf="user"> {{ user.name }} </span>
-    <div class="divider"></div>
-    <button md-button *ngIf="user" (click)="logout()">Log Out</button>
-    <button md-button *ngIf="!user" (click)="openDialog()">Log In</button>
+  <span>Map Interaction for CMU student</span>
+  <span class="fill-remaining-space"></span>
+
+  <button md-raised-button *ngIf="user" [routerLink]="['place']">Place</button>
+  <button md-button *ngIf="user" [routerLink]="['member']"> Member </button>
+
+  <span *ngIf="user"> {{ user.name }} </span>
+  <div class="divider"></div>
+  <button md-button *ngIf="user" (click)="logout()">Log Out</button>
+  <button md-button *ngIf="!user" (click)="openDialog()">Log In</button>
 </md-toolbar>
