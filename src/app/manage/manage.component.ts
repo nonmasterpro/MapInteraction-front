@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NgUploaderOptions } from 'ngx-uploader';
 
@@ -13,7 +13,7 @@ export class ManageComponent implements OnInit {
   @Input() detail: any;
 	formManage: FormGroup;
 
-  constructor() { }
+  constructor(@Inject('AppConfig') private config: any) { }
 
   ngOnInit() {
   	this.setupForm();
@@ -33,9 +33,8 @@ export class ManageComponent implements OnInit {
   uploadFile: any;
   hasBaseDropZoneOver: boolean = false;
   picture: NgUploaderOptions = new NgUploaderOptions({
-    url: 'http://localhost:10050/upload'
+    url: this.config.apiEndpoints.uploadImage
   });
-
   sizeLimit = 2000000;
 
   handleUpload(data): void {
