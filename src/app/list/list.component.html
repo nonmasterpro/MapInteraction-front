@@ -1,15 +1,77 @@
 <div class="body-content">
-  <h2 *ngIf="options.action === 'place'"> Manage {{options.title}}</h2>
-  <h2 *ngIf="options.action === 'member'"> Manage {{options.title}}</h2>
+  <h2 *ngIf="options.title === 'Place'"> Manage {{options.title}}</h2>
+  <h2 *ngIf="options.title === 'Member'"> Manage {{options.title}}</h2>
+  <h2 *ngIf="options.title === 'Schedule'"> Manage {{options.title}}</h2>
   <md-divider></md-divider>
   <md-toolbar class="breadcrumb">
     <a [href]="b.link" *ngFor="let b of options.breadcrumb">
             {{ b.name }}    &nbsp;
         </a>
   </md-toolbar>
-  <div  class="list">
+  <div class="list">
     <h3 md-header>{{options.title}} list</h3>
-    <table>
+    <!-- Begin Schedule -->
+    <div *ngIf="options.title === 'Schedule'">
+      <md-grid-list class="schedule" cols="4" rowHeight="500px">
+
+        <!-- Begin Schedule Left -->
+        <md-grid-tile [colspan]="1">
+          <div class="scheduleLeft">
+            <md-input-container floatingPlaceholder=false class="searchLeft">
+              <span md-prefix><i class="material-icons">search</i></span>
+              <input md-input type="search">
+            </md-input-container>
+
+            <h4>Member List</h4>
+            <div class="memberlist">
+              <div *ngFor="let member of options.params.members" class="member">{{member.name}}</div>
+            </div>
+          </div>
+        </md-grid-tile>
+        <!-- End Schedule Left -->
+
+        <!-- Begin Schedule Right -->
+        <md-grid-tile [colspan]="3">
+          <div class="scheduleRight">
+            <div class="addSchule">
+              <button md-raised-button color="primary"><i class="material-icons">add</i></button>
+            </div>
+            <h3> Schedule | Name : Member 1</h3>
+            <md-input-container floatingPlaceholder=false class="searchRight">
+              <span md-prefix><i class="material-icons">search</i></span>
+              <input md-input type="search">
+            </md-input-container>
+            <div class="schedulelist">
+              <table>
+                <thead>
+                  <tr>
+                    <th *ngFor="let header of options.params.headers" [style.width.px]="header.maxWidth">{{header.name}}</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let member of options.params.members">
+                    <td *ngFor="let name of options.params.headers">
+                      {{name.name}}
+                    </td>
+                    <td><button md-raised-button [routerLink]="['edit']"><i class="material-icons">edit</i></button></td>
+                    <td><button md-raised-button color="warn"><i class="material-icons">delete</i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </md-grid-tile>
+
+        <!-- End Schedule Rigth -->
+      </md-grid-list>
+    </div>
+    <!-- End Schedule -->
+
+    <!-- Begin PlaceList,MemberList -->
+    <table *ngIf="options.title !== 'Schedule'">
       <thead>
         <tr>
           <th *ngFor="let header of options.params.headers" [style.width.px]="header.maxWidth">
@@ -31,9 +93,10 @@
               {{ detail[header.prop] }}
             </div>
           </td>
-            <td><button md-raised-button [routerLink]="['edit',detail.id]"><i class="material-icons">edit</i></button></td>
-            <td><button md-raised-button (click)="delete()" color="warn"><i class="material-icons">delete</i></button></td>
+          <td><button md-raised-button [routerLink]="['edit',detail.id]"><i class="material-icons">edit</i></button></td>
+          <td><button md-raised-button (click)="delete()" color="warn"><i class="material-icons">delete</i></button></td>
         </tr>
     </table>
+    <!-- End PlaceList,MemberList -->
   </div>
 </div>

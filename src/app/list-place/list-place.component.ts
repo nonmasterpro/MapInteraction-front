@@ -20,18 +20,6 @@ export class ListplaceComponent implements OnInit {
         'link': '/placelist'
     		}
     ],
-
-    'tiles': [
-      {
-        'cols': 3,
-        'rows': 5,
-      },
-      {
-        'cols': 1,
-        'rows': 5,
-      },
-    ],
-
     'params':
     {
       'headers': [
@@ -82,32 +70,7 @@ export class ListplaceComponent implements OnInit {
           'type': 'text',
           'name': 'Coordinate Y'
         }
-      ],
-
-      'details': [
-        {
-          'id':'1',
-          'image': 'assets/img/IU.jpg',
-          'name': 'CAMT1',
-          'description': 'des1',
-          'contact': '111',
-          'type': 'buiding',
-          'website': 'google.com',
-          'coordinateX': '1111',
-          'coordinateY': ' 1111'
-        },
-        {
-          'id':'2',
-          'image': 'assets/img/IU2.jpg',
-          'name': 'CAMT2',
-          'description': 'des22',
-          'contact': '22222',
-          'type': 'buiding222',
-          'website': 'google.com22',
-          'coordinateX': '2222',
-          'coordinateY': ' 22222'
-        }]
-    }
+      ]}
   };
 
   constructor(
