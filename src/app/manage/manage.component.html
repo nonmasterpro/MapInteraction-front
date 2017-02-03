@@ -14,10 +14,11 @@
                 <label>{{ p.name }}</label>
                 <br>
                 <md-input-container>
-                    <input md-input placeholder="{{p.name}}" [formControlName]="p.name" name="{{p.name}}" [(ngModel)]="p.value">
+                    <input type="password" md-input placeholder="{{p.name}}" [formControlName]="p.name" required name="{{p.name}}" [(ngModel)]="p.value" #spy>
                 </md-input-container>
                 <!-- <input type="text" [formControlName]="p.name" name="{{ p.name }}" [(ngModel)]="p.value"> -->
                 <div *ngIf="!formManage.controls[ p.name ].valid && !formManage.controls[ p.name ]._pristine">plz</div>
+                <br>TODO: remove this: {{spy.className}}
             </div>
             <div *ngIf="p.type === 'selection'">
                 <!-- <label>{{ p.name }}</label> -->
@@ -42,4 +43,3 @@
     <button *ngIf="options.action === 'add'" md-button (click)="add()" class="md-raised md-primary">Add</button>
     <button *ngIf="options.action === 'edit'" md-button class="md-raised md-primary">Edit</button>
 </div>
-test

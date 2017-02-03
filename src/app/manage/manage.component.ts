@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NgUploaderOptions } from 'ngx-uploader';
 
 @Component({
   selector: 'app-manage',
   templateUrl: './manage.component.html',
-  styleUrls: ['./manage.component.scss']
+  styleUrls: ['./manage.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ManageComponent implements OnInit {
 
@@ -30,6 +31,8 @@ export class ManageComponent implements OnInit {
   	});
   }
 
+
+  // Use to create uploadfile
   uploadFile: any;
   hasBaseDropZoneOver: boolean = false;
   picture: NgUploaderOptions = new NgUploaderOptions({
