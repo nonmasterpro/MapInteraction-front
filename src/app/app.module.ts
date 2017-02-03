@@ -28,6 +28,8 @@ import { ListplaceComponent } from './list-place/list-place.component';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { ListMemberComponent } from './list-member/list-member.component';
 import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
+import { MemberScheduleComponent } from './member-schedule/member-schedule.component';
+import { SearchPipe } from './search.pipe';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -50,7 +52,9 @@ export function getAuthHttp(http) {
     ListComponent,
     ListplaceComponent,
     ListMemberComponent,
-    ScheduleManagementComponent
+    ScheduleManagementComponent,
+    MemberScheduleComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

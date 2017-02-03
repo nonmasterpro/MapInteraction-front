@@ -4,7 +4,8 @@ import { AuthService } from './shared/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
@@ -14,11 +15,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   public options = {
     position: ["top", "right"]
   }
-  
+
   constructor(
     private authService: AuthService
     ) {}
-  
+
   ngOnInit() {
     this.authService.me();
   }
