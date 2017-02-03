@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { NgUploaderOptions } from 'ngx-uploader';
 
 
@@ -15,9 +15,7 @@ export class PlacesManagementComponent implements OnInit {
     {value: 't3', viewValue: 'Faculty'}
   ];
 
-  constructor() {
-
-  }
+  constructor(@Inject('AppConfig') private config: any) { }
 
   ngOnInit() {
   }
@@ -42,7 +40,7 @@ export class PlacesManagementComponent implements OnInit {
 	// };
 
 	options: NgUploaderOptions = new NgUploaderOptions({
-		url: 'http://localhost:10050/upload'
+		url: this.config.apiEndpoints.uploadImage
 	});
 
   sizeLimit = 2000000;
@@ -51,6 +49,7 @@ export class PlacesManagementComponent implements OnInit {
   	console.log(data);
     if (data && data.response) {
       data = JSON.parse(data.response);
+      console.log(data);
       this.uploadFile = data;
     }
   }
