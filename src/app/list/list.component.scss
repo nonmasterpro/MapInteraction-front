@@ -5,6 +5,7 @@
 
   a {
     text-decoration: none;
+    color: #4f4f4f;
   }
 
   a:before {
@@ -63,5 +64,104 @@
     margin: 0;
     width: 100%;
     height: 130px;
+  }
+}
+
+.schedule {
+  .scheduleLeft,
+  .scheduleRight {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+  }
+
+  .scheduleLeft {
+    background-color: rgba(#000,0.15);
+    border-radius: 3px;
+    width: 265px;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+    .memberlist {
+      overflow-y: auto;
+      height: 250px;
+      width: 265px;
+      line-height: 1em;
+      background-color: #dcdee1;
+      border-radius: 4px;
+
+      .member {
+        margin: 8px 0;
+        padding: 5px 15px;
+        width: 100%;
+      }
+
+      &::-webkit-scrollbar {
+        -webkit-appearance: none;
+      }
+
+      &::-webkit-scrollbar:vertical {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar:horizontal {
+        height: 0;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background-color: rgba(0, 0, 0, .5);
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 8px;
+      }
+    }
+
+    md-input-container.searchLeft {
+      width: 100%;
+    }
+  }
+
+  .scheduleRight {
+    margin-left: 5px;
+    background-color: rgba(222,222,222,0.55);
+    border-radius: 3px;
+    width: 850px;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    text-align: center;
+
+    .schedulelist {
+      overflow-y: auto;
+      height: 300px;
+      line-height: 1em;
+      background-color: #dcdee1;
+      border-radius: 4px;
+      &::-webkit-scrollbar {
+        -webkit-appearance: none;
+      }
+
+      &::-webkit-scrollbar:vertical {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar:horizontal {
+        height: 0;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background-color: rgba(0, 0, 0, .5);
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 8px;
+      }
+    }
+
+    div:first-child {
+      float: right;
+    }
   }
 }

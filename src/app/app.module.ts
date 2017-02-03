@@ -27,6 +27,7 @@ import { ListplaceComponent } from './list-place/list-place.component';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { ListMemberComponent } from './list-member/list-member.component';
+import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -48,7 +49,8 @@ export function getAuthHttp(http) {
     MemberManagementComponent,
     ListComponent,
     ListplaceComponent,
-    ListMemberComponent
+    ListMemberComponent,
+    ScheduleManagementComponent
   ],
   imports: [
     BrowserModule,
