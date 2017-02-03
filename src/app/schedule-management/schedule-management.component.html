@@ -1,1 +1,29 @@
-<app-list [options]="options"></app-list>
+<!-- Begin right panel -->
+<div class="scheduleRight">
+  <div class="addSchule">
+    <button md-raised-button color="primary"><i class="material-icons">add</i></button>
+  </div>
+  <h3> {{options.title}} | {{member.name}} </h3>
+
+  <div class="schedulelist">
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let header of options.params.headers" [style.width.px]="header.maxWidth">{{header.name}}</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let member of member.subjects">
+          <td *ngFor="let name of options.params.headers">
+            {{member.name}}
+          </td>
+          <td><button md-raised-button [routerLink]="['edit']"><i class="material-icons">edit</i></button></td>
+          <td><button md-raised-button color="warn"><i class="material-icons">delete</i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- End right panel -->
