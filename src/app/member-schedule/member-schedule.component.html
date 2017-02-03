@@ -1,0 +1,19 @@
+<div class="schedule">
+  <div class="scheduleLeft">
+
+    <div class="member-container">
+      <md-input-container floatingPlaceholder=false class="searchLeft">
+        <span md-prefix><i class="material-icons">search</i></span>
+        <input md-input type="search"  [(ngModel)]="search" #input>
+      </md-input-container>
+
+      <h4>Member List</h4>
+      <div class="memberlist">
+        <div *ngFor="let member of options.params.members | searchPipe:search" class="member">
+          <div class="selectMember" (click)="setSchedule(member)">{{member.name}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-schedule-management [options]="options" [member]="member"></app-schedule-management>
+</div>
