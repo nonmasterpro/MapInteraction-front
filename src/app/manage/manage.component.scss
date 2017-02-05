@@ -23,6 +23,13 @@ md-divider {
     }
 }
 
+.ng-valid[required], .ng-valid.required  {
+  border-bottom: 5px solid #42A948; /* green */
+  div.md-input-underline {
+    border-color: rgba(#000, 1) !important;
+  }
+}
+
 .ng-invalid[required]:not(form)  {
   border-bottom: 5px solid #a94442; /* red */
 }
