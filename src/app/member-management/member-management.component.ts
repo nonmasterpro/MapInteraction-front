@@ -57,11 +57,6 @@ export class MemberManagementComponent implements OnInit {
 						'value': 'user'
 					}
 				]
-			},
-			{
-				'name': 'Picture',
-				'type': 'file',
-				'value': ''
 			}
 		]
 	};

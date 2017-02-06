@@ -6,7 +6,7 @@
     <form [formGroup]="formManage">
         <div>
             <div>
-                {{detail?.name}}
+                <!-- {{detail?.name}} -->
             </div>
         </div>
         <div *ngFor=" let p of options.params ">
@@ -14,10 +14,19 @@
                 <label>{{ p.name }}</label>
                 <br>
                 <md-input-container>
-                    <input md-input placeholder="{{p.name}}" [formControlName]="p.name" name="{{p.name}}" [(ngModel)]="p.value">
+                    <input  md-input  [formControlName]="p.name" required name="{{p.name}}" [(ngModel)]="p.value" #spy>
                 </md-input-container>
                 <!-- <input type="text" [formControlName]="p.name" name="{{ p.name }}" [(ngModel)]="p.value"> -->
                 <div *ngIf="!formManage.controls[ p.name ].valid && !formManage.controls[ p.name ]._pristine">plz</div>
+                <!-- <br>TODO: remove this: {{spy.className}} -->
+            </div>
+            <div *ngIf="p.type === 'text2'">
+                <label>{{ p.name }}..</label>
+                <br>
+                <md-input-container>
+                    <input type="password" [formControlName]="p.name" required name="{{p.name}}" [(ngModel)]="p.value" >
+                </md-input-container>
+                
             </div>
             <div *ngIf="p.type === 'selection'">
                 <!-- <label>{{ p.name }}</label> -->
@@ -37,7 +46,7 @@
             </div>
             <hr>
         </div>
-        {{ formManage.valid }}
+        <!-- {{ formManage.valid }} -->
     </form>
     <button *ngIf="options.action === 'add'" md-button (click)="add()" class="md-raised md-primary">Add</button>
     <button *ngIf="options.action === 'edit'" md-button class="md-raised md-primary">Edit</button>

@@ -24,7 +24,11 @@ const appRoutes: Routes = [
     component: MemberManagementComponent
   },
   {
-    path: 'test',
+    path: 'place/:action',
+    component: PlacesManagementComponent
+  },
+  {
+    path: 'place/:edit/:id',
     component: PlacesManagementComponent
   },
   {
