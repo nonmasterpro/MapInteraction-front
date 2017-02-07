@@ -41,10 +41,10 @@ export class ManageComponent implements OnInit {
   sizeLimit = 2000000;
 
   handleUpload(data): void {
-    console.log(data);
-    if (data && data.response) {
+    if (data && data.response && data.status === '200') {
       data = JSON.parse(data.response);
       this.uploadFile = data;
+      console.log(this.uploadFile);
     }
   }
 
