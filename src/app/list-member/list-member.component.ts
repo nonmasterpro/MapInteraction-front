@@ -38,11 +38,6 @@ export class ListMemberComponent implements OnInit {
           'maxWidth': '250'
         },
         {
-          'prop': 'username',
-          'type': 'text',
-          'name': 'Username'
-        },
-        {
           'prop': 'email',
           'type': 'text',
           'name': 'Email'

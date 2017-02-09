@@ -25,13 +25,6 @@ export class MemberManagementComponent implements OnInit {
 				'prop': 'name'
 			},
 			{
-				'name': 'Username',
-				'type': 'text',
-				'value': '',
-				'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
-				'prop': 'username'
-			},
-			{
 				'name': 'Email',
 				'type': 'text',
 				'value': '',
@@ -40,27 +33,30 @@ export class MemberManagementComponent implements OnInit {
 			},
 			{
 				'name': 'Password',
-				'type': 'text',
+				'type': 'password',
 				'value': '',
-				'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)])
+				'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
+				'prop': 'password'
 			},
 			{
 				'name': 'Role',
 				'type': 'selection',
+				'value': '',
+				'control': new FormControl('', [<any>Validators.required]),
+				'prop': 'roleName',
 				'selections': [
 					{
 						'name': 'Admin',
-						'value': 'admin'
+						'value': 'Admin'
 					},
 					{
 						'name': 'User',
-						'value': 'user'
+						'value': 'User'
 					}
 				]
 			}
 		]
 	};
-
 	data: any;
 
   constructor(
@@ -84,6 +80,14 @@ export class MemberManagementComponent implements OnInit {
   	} else {
 	  	this.options.action = 'add';
   	}
+  }
+
+  add(e) {
+  	this.userService.create(e.parameters).then((res) => {
+  		console.log(res);
+  	}, (error) => {
+  		console.log(error);
+  	});
   }
 
 }

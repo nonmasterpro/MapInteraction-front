@@ -1,1 +1,3 @@
-<app-manage [options]="options" [detail]="data"></app-manage>
+Name : {{ options.params[0].value }}
+
+<app-manage [options]="options" [detail]="data" (addEvent)="add($event)"></app-manage>

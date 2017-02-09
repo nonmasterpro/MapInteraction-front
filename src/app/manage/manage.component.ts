@@ -1,6 +1,9 @@
-import { Component, OnInit, Input, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, Inject, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NgUploaderOptions } from 'ngx-uploader';
+import * as _ from "lodash";
+
+
 
 @Component({
   selector: 'app-manage',
@@ -13,6 +16,13 @@ export class ManageComponent implements OnInit {
 	@Input() options;
   @Input() detail: any;
 	formManage: FormGroup;
+  p = {
+    'value':''
+  };
+  
+
+
+  @Output() addEvent = new EventEmitter<any>();
 
   constructor(@Inject('AppConfig') private config: any) { }
 
@@ -23,7 +33,7 @@ export class ManageComponent implements OnInit {
   setupForm() {
   	this.formManage = new FormGroup({});
   	this.options.params.forEach((p) => {
-  		if( p.type !== 'text' ) {
+  		if( p.type === 'file' ) {
   			return;
   		}
 
@@ -41,11 +51,11 @@ export class ManageComponent implements OnInit {
   sizeLimit = 2000000;
 
   handleUpload(data): void {
-    if (data && data.response && data.status === '200') {
+    if (data && data.response) {
       data = JSON.parse(data.response);
       this.uploadFile = data;
-      console.log(this.uploadFile);
     }
+      console.log(this.uploadFile);
   }
 
   fileOverBase(e:any):void {
@@ -58,6 +68,40 @@ export class ManageComponent implements OnInit {
       uploadingFile.setAbort();
       alert('File is too large');
     }
+  }
+
+  edit() {
+   console.log("Aaaaa");
+    console.log(this.p);
+  }
+
+  result(){
+
+      _.forEach({ 'a': 1, 'b': 2 }, 
+        (value, key) => {
+          console.log(key);
+        })
+  
+  }
+
+  getParameters() {
+
+    let objResult = {};
+     _.forEach( this.options.params, (value) => {
+       // this.options.params.name = key; 
+       // this.options.params.value = value.value; 
+          // console.log('key: ' + key + ' | value: ' + value);
+          objResult[value.prop] = value.value;
+          // console.log(value);
+        });
+     return objResult;
+  }
+
+  add() {
+    let objResult = this.getParameters(); 
+    this.addEvent.emit({
+      'parameters': objResult
+    });
   }
 
 }

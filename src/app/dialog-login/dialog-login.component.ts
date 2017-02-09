@@ -26,6 +26,7 @@ export class DialogLoginComponent implements OnInit {
   ngOnInit() {}
 
   login() {
+     console.log(this.credentials);
     this.authService.login(this.credentials).then(res => {
       this.dialogRef.close();
       this._notificationsService.success(
