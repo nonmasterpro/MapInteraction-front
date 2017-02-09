@@ -20,18 +20,19 @@
                 <div *ngIf="!formManage.controls[ p.name ].valid && !formManage.controls[ p.name ]._pristine">plz</div>
                 <!-- <br>TODO: remove this: {{spy.className}} -->
             </div>
-            <div *ngIf="p.type === 'text2'">
-                <label>{{ p.name }}..</label>
+            <div *ngIf="p.type === 'password'">
+                <label>{{ p.name }}</label>
                 <br>
                 <md-input-container>
-                    <input type="password" [formControlName]="p.name" required name="{{p.name}}" [(ngModel)]="p.value" >
+                    <input  md-input type="password" [formControlName]="p.name" required name="{{p.name}}" [(ngModel)]="p.value" >
                 </md-input-container>
                 
             </div>
             <div *ngIf="p.type === 'selection'">
                 <!-- <label>{{ p.name }}</label> -->
                 <br>
-                <md-select placeholder="{{ p.name }}">
+                {{ p.value }}
+                <md-select placeholder="{{ p.name }}" [formControlName]="p.name" [(ngModel)]="p.value">
                     <md-option *ngFor="let s of p.selections" [value]=" s.value ">
                         {{ s.name }}
                     </md-option>
@@ -42,12 +43,12 @@
             </select> -->
             </div>
             <div *ngIf="p.type === 'file'">
-                <input type="file" ngFileSelect [options]="picture" (onUpload)="handleUpload($event)" (beforeUpload)="beforeUpload($event)"> Response: {{ uploadFile | json }}
+                <input type="file" ngFileSelect [options]="picture" (onUpload)="handleUpload($event)" (beforeUpload)="beforeUpload($event)"> Response: <img *ngIf="uploadFile" [src]="'http://139.59.231.135/images/' + uploadFile.fileName">
             </div>
             <hr>
         </div>
         <!-- {{ formManage.valid }} -->
     </form>
     <button *ngIf="options.action === 'add'" md-button (click)="add()" class="md-raised md-primary">Add</button>
-    <button *ngIf="options.action === 'edit'" md-button class="md-raised md-primary">Edit</button>
+    <button *ngIf="options.action === 'edit'" md-button (click)="edit()" class="md-raised md-primary">Edit</button>
 </div>

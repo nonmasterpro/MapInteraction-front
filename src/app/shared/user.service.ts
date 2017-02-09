@@ -21,11 +21,33 @@ export class UserService {
   all() {
   	return new Promise((resolve, reject) => {
   		this.authHttp.get(this.config.apiEndpoints.users).subscribe((res: any) => {
-			let users = JSON.parse(res._body);
-			resolve(users);
+          if(res.status === 200) {
+            let users = JSON.parse(res._body);
+            resolve(users);
+          } else {
+            reject({});
+          }
         });
 	  });
   }
+
+  create(user) {
+    return new Promise((resolve, reject) => {
+      this.authHttp.post(this.config.apiEndpoints.users, user).subscribe((res: any) => {
+        console.log(res);
+          if(res.status === 200) {
+            let user = JSON.parse(res._body);
+            resolve(user);
+          } else {
+            reject({
+              'text': 'message'
+            });
+          }
+      });
+    });
+  }
+
+
 
 
 
