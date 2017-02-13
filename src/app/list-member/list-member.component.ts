@@ -43,12 +43,7 @@ export class ListMemberComponent implements OnInit {
           'name': 'Email'
         },
         {
-          'prop': 'password',
-          'type': 'text',
-          'name': 'Password'
-        },
-        {
-          'prop': 'role',
+          'prop': 'roleName',
           'type': 'text',
           'name': 'Role'
         }
@@ -65,6 +60,14 @@ export class ListMemberComponent implements OnInit {
   ngOnInit() {
     this.userService.all().then((res) => {
       this.data = res;
+    });
+  }
+
+  delete(e) {
+   this.userService.delete(e.id).then((res) => {
+      location.reload();
+    }, (error) => {
+      console.log(error);
     });
   }
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
+import { PlaceService } from '../shared/place.service';
+
 // import { Component, OnInit, Inject } from '@angular/core';
 // import { NgUploaderOptions } from 'ngx-uploader';
 
@@ -14,6 +16,7 @@ import { FormControl, Validators } from '@angular/forms';
 export class PlacesManagementComponent implements OnInit {
     
     id: number;
+    data: any;
 
   options = {
     'title': 'Place',
@@ -32,18 +35,21 @@ export class PlacesManagementComponent implements OnInit {
         'type': 'text',
         'value': '',
         'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
-        'prop': 'username'
+        'prop': 'description'
       },
       {
         'name': 'Cotact',
         'type': 'text',
         'value': '',
         'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
-        'prop': 'email'
+        'prop': 'contact'
       },
       {
         'name': 'Type',
         'type': 'selection',
+        'value': '',
+        'control': new FormControl('', [<any>Validators.required]),
+        'prop': 'type',
         'selections': [
           {
             'name': 'Sport',
@@ -52,6 +58,10 @@ export class PlacesManagementComponent implements OnInit {
           {
             'name': 'Bluiding',
             'value': 'bluiding'
+          },
+          {
+            'name': 'X',
+            'value': 'x'
           }
         ]
       },
@@ -59,18 +69,21 @@ export class PlacesManagementComponent implements OnInit {
         'name': 'Website',
         'type': 'text',
         'value': '',
-        'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)])
+        'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
+        'prop': 'website'
       },
       {
         'name': 'X',
         'type': 'text',
         'value': '',
+        'prop': 'x',
         'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)])
       },
       {
         'name': 'Y',
         'type': 'text',
         'value': '',
+        'prop': 'y',
         'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)])
       },
       {
@@ -88,27 +101,44 @@ export class PlacesManagementComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private placeService: PlaceService
     // @Inject('AppConfig') private config: any
     ) { }
 
   ngOnInit() {
     if( this.router.url.includes('edit') ) {
-      // this.route.params.forEach((param: Params) => {
-      //   this.id = param['id'];
-      //   this.userService.get( this.id ).then((res) => {
-      //     this.data = res;
-      //     this.options.params.forEach((p: any) => {
-      //       p.value = this.data[ p.prop ] || '';
-      //     })
-      //   });
-        this.options.action = 'edit';
-      // });
+      this.route.params.forEach((param: Params) => {
+        this.id = param['id'];
+        this.placeService.get( this.id ).then((res) => {
+          this.data = res;
+          this.options.params.forEach((p: any) => {
+            p.value = this.data[ p.prop ] || '';
+          })
+        });
+        this.options.action = 'edit'
+      });
     } else {
       this.options.action = 'add';
     }
   }
-
+  add(e) {
+    this.placeService.create(e.parameters).then((res) => {
+    this.router.navigate(['place']);
+      console.log(res);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  edit(e) {
+    this.id
+   this.placeService.update(this.id,e.parameters).then((res) => {
+    this.router.navigate(['place']);
+      console.log(res);
+    }, (error) => {
+      console.log(error);
+    });
+  }
  //  uploadFile: any;
  //  hasBaseDropZoneOver: boolean = false;
  // //  options: NgUploaderOptions = {

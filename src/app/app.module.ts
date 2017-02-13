@@ -13,6 +13,7 @@ import { NgUploaderModule } from 'ngx-uploader';
 
 import { AuthService } from './shared/auth.service';
 import { UserService } from './shared/user.service';
+import { PlaceService } from './shared/place.service';
 
 import { AppComponent } from './app.component';
 import { UserManagementComponent }  from './user-management/user-management.component';
@@ -80,7 +81,8 @@ export function getAuthHttp(http) {
       useFactory: getAuthHttp,
       deps: [Http, RequestOptions]
     },
-    UserService
+    UserService,
+    PlaceService
   ],
   bootstrap: [AppComponent]
 })

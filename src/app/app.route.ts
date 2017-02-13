@@ -28,7 +28,7 @@ const appRoutes: Routes = [
     component: PlacesManagementComponent
   },
   {
-    path: 'place/:edit/:id',
+    path: 'place/edit/:id',
     component: PlacesManagementComponent
   },
   {

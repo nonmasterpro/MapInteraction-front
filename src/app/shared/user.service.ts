@@ -47,8 +47,29 @@ export class UserService {
     });
   }
 
+update(id, user) {
+    return new Promise((resolve, reject) => {
+      this.authHttp.put(this.config.apiEndpoints.users + '/' + id, user).subscribe((res: any) => {
+        console.log(res);
+          if(res.status === 200) {
+            let user = JSON.parse(res._body);
+            resolve(user);
+          } else {
+            reject({
+              'text': 'message'
+            });
+          }
+      });
+    });
+  }
 
-
-
+delete(id) {
+    return new Promise((resolve, reject) => {
+      this.authHttp.delete(this.config.apiEndpoints.users + '/' + id).subscribe((res: any) => {
+      let user = JSON.parse(res._body);
+      resolve(user);
+        });
+    });
+  }
 
 }
