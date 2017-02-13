@@ -31,9 +31,8 @@
             <div *ngIf="p.type === 'selection'">
                 <!-- <label>{{ p.name }}</label> -->
                 <br>
-                {{ p.value }}
                 <md-select placeholder="{{ p.name }}" [formControlName]="p.name" [(ngModel)]="p.value">
-                    <md-option *ngFor="let s of p.selections" [value]=" s.value ">
+                    <md-option *ngFor="let s of p.selections" [value]=" s.value " >
                         {{ s.name }}
                     </md-option>
                 </md-select>
@@ -43,7 +42,7 @@
             </select> -->
             </div>
             <div *ngIf="p.type === 'file'">
-                <input type="file" ngFileSelect [options]="picture" (onUpload)="handleUpload($event)" (beforeUpload)="beforeUpload($event)"> Response: <img *ngIf="uploadFile" [src]="'http://139.59.231.135/images/' + uploadFile.fileName">
+                <input type="file" ngFileSelect [options]="picture" (onUpload)="handleUpload($event)" (beforeUpload)="beforeUpload($event)"> Response: <img *ngIf="uploadFile" [src]="'http://139.59.231.135/map/public/images/' + uploadFile.fileName"> 
             </div>
             <hr>
         </div>

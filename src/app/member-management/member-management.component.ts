@@ -47,11 +47,11 @@ export class MemberManagementComponent implements OnInit {
 				'selections': [
 					{
 						'name': 'Admin',
-						'value': 'Admin'
+						'value': 'admin'
 					},
 					{
 						'name': 'User',
-						'value': 'User'
+						'value': 'user'
 					}
 				]
 			}
@@ -81,10 +81,19 @@ export class MemberManagementComponent implements OnInit {
 	  	this.options.action = 'add';
   	}
   }
+  edit(e) {
+  	this.id
+   	this.userService.update(this.id,e.parameters).then((res) => {
+  		this.router.navigate(['member']);
+  	}, (error) => {
+  		console.log(error);
+  	});
+    
+  }
 
   add(e) {
   	this.userService.create(e.parameters).then((res) => {
-  		console.log(res);
+    this.router.navigate(['member']);
   	}, (error) => {
   		console.log(error);
   	});

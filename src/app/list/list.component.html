@@ -9,7 +9,7 @@
         </a>
   </md-toolbar>
   <div class="list">
-    <h3 md-header>{{options.title}} list</h3>
+    <h3 md-header>{{options.title}} list <button md-raised-button color="primary" [routerLink]="['add']"><i class="material-icons">add</i></button> </h3>
     <!-- Begin PlaceList,MemberList -->
     <table>
       <thead>
@@ -25,8 +25,8 @@
         <tr class="row" *ngFor="let detail of details">
           <td *ngFor="let header of options.params.headers">
             <div *ngIf=" header.type === 'image' ">
-              <md-card class="place-img">
-                <img md-card-image [src]="detail[header.prop]">
+              <md-card class="place-img" *ngFor="let image of detail.images">
+                <img md-card-image [src]="'http://139.59.231.135/map/public/images/' + image['fileName']">
               </md-card>
             </div>
             <div *ngIf=" header.type === 'text' ">
@@ -34,7 +34,7 @@
             </div>
           </td>
           <td><button md-raised-button [routerLink]="['edit',detail.id]"><i class="material-icons">edit</i></button></td>
-          <td><button md-raised-button (click)="delete()" color="warn"><i class="material-icons">delete</i></button></td>
+          <td><button md-raised-button (click)="delete(detail.id)" color="warn"><i class="material-icons">delete</i></button></td>
         </tr>
     </table>
     <!-- End PlaceList,MemberList -->

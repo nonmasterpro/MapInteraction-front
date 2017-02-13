@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Params, ActivatedRoute } from '@angular/router';
+import { Router, Params, ActivatedRoute } from '@angular/router';
+import { PlaceService } from '../shared/place.service';
 
 @Component({
   selector: 'app-list-place',
@@ -8,6 +9,7 @@ import { Params, ActivatedRoute } from '@angular/router';
 })
 export class ListplaceComponent implements OnInit {
 
+  data: any;
   options = {
     'title': 'Place',
     'action': 'place',
@@ -61,12 +63,12 @@ export class ListplaceComponent implements OnInit {
           'name': 'Website'
         },
         {
-          'prop': 'coordinateX',
+          'prop': 'x',
           'type': 'text',
           'name': 'Coordinate X'
         },
         {
-          'prop': 'coordinateY',
+          'prop': 'y',
           'type': 'text',
           'name': 'Coordinate Y'
         }
@@ -74,14 +76,22 @@ export class ListplaceComponent implements OnInit {
   };
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private placeService: PlaceService
   )
   { }
 
   ngOnInit() {
-
-    this.route.params.forEach((param: Params) => {
-      this.options.action = param['action'];
+      this.placeService.all().then((res) => {
+      this.data = res;
+    });
+  }
+  delete(e) {
+   this.placeService.delete(e.id).then((res) => {
+      location.reload();
+    }, (error) => {
+      console.log(error);
     });
   }
 

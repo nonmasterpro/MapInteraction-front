@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, Input, Pipe, PipeTransform, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,7 @@ export class ListComponent implements OnInit {
   @Input() details: any;
   formList: FormGroup;
 
+  @Output() deleteEvent = new EventEmitter<any>();
 
   constructor() { }
 
@@ -32,5 +33,10 @@ export class ListComponent implements OnInit {
   	// this.formList.addControl(p.name, p.control);
   	// });
   }
-
+  
+  delete(id) {
+    this.deleteEvent.emit({
+      'id': id
+    });
+  }
 }

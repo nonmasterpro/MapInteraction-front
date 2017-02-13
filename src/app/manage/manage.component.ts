@@ -23,6 +23,7 @@ export class ManageComponent implements OnInit {
 
 
   @Output() addEvent = new EventEmitter<any>();
+  @Output() editEvent = new EventEmitter<any>();
 
   constructor(@Inject('AppConfig') private config: any) { }
 
@@ -71,8 +72,10 @@ export class ManageComponent implements OnInit {
   }
 
   edit() {
-   console.log("Aaaaa");
-    console.log(this.p);
+   let objResult = this.getParameters(); 
+    this.editEvent.emit({
+      'parameters': objResult
+    });
   }
 
   result(){
@@ -92,11 +95,16 @@ export class ManageComponent implements OnInit {
        // this.options.params.value = value.value; 
           // console.log('key: ' + key + ' | value: ' + value);
           objResult[value.prop] = value.value;
+          
           // console.log(value);
-        });
+        });if(this.uploadFile) {
+            objResult['images'] = [this.uploadFile.id];
+          }
      return objResult;
   }
-
+  test(){
+    console.log(this.getParameters());
+  }
   add() {
     let objResult = this.getParameters(); 
     this.addEvent.emit({
