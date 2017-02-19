@@ -101,6 +101,9 @@ export class ManageComponent implements OnInit {
      if(this.uploadFile) {
             objResult['images'] = [this.uploadFile.id];
           }
+      if(this.options.type==='place') {
+        objResult['routes'] = [];
+      }
      return objResult;
   }
   test(){

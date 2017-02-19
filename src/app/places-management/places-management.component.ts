@@ -152,6 +152,7 @@ export class PlacesManagementComponent implements OnInit {
     });
   }
   edit(e) {
+    console.log(e.parameters)
     this.id
    this.placeService.update(this.id,e.parameters).then((res) => {
     this.router.navigate(['place']);
