@@ -42,7 +42,10 @@
             </select> -->
             </div>
             <div *ngIf="p.type === 'file'">
-                <input type="file" ngFileSelect [options]="picture" (onUpload)="handleUpload($event)" (beforeUpload)="beforeUpload($event)"> Response: <img *ngIf="uploadFile" [src]="'http://139.59.231.135/map/public/images/' + uploadFile.fileName"> 
+                <input type="file" ngFileSelect [options]="picture" (onUpload)="handleUpload($event)" (beforeUpload)="beforeUpload($event)"> 
+                
+                Response: <img  class="place-img" *ngIf="uploadFile" [src]="'http://139.59.231.135/map/public/images/' + uploadFile.fileName"> 
+                
             </div>
             <hr>
         </div>

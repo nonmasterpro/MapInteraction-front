@@ -52,16 +52,36 @@ export class PlacesManagementComponent implements OnInit {
         'prop': 'type',
         'selections': [
           {
-            'name': 'Sport',
-            'value': 'sport'
+            'name': 'Building',
+            'value': 'building'
           },
           {
-            'name': 'Bluiding',
-            'value': 'bluiding'
+            'name': 'Sport Field',
+            'value': 'sportField'
           },
           {
-            'name': 'X',
-            'value': 'x'
+            'name': 'Cafe',
+            'value': 'cafe'
+          },
+          {
+            'name': 'Restaurant',
+            'value': 'restaurant'
+          },
+          {
+            'name': 'Car Parking',
+            'value': 'carParking'
+          },
+          {
+            'name': 'Dormitory',
+            'value': 'dormitory'
+          },
+          {
+            'name': 'Landmark',
+            'value': 'landmark'
+          },
+          {
+            'name': 'ATM',
+            'value': 'ATM'
           }
         ]
       },
@@ -78,6 +98,7 @@ export class PlacesManagementComponent implements OnInit {
         'value': '',
         'prop': 'x',
         'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)])
+        // 'control': new FormControl('', [<any>Validators.required, <any>Validators.pattern('^\d+(\.\d{1,2})?$')])
       },
       {
         'name': 'Y',
@@ -131,6 +152,7 @@ export class PlacesManagementComponent implements OnInit {
     });
   }
   edit(e) {
+    console.log(e.parameters)
     this.id
    this.placeService.update(this.id,e.parameters).then((res) => {
     this.router.navigate(['place']);

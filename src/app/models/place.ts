@@ -9,6 +9,7 @@ export class Place {
         public website: string,
         public x: number,
         public y: number,
-        public images?: Image[]
+        public images?: Image[],
+        public bus_routes?: any[]
     ) {}
 }

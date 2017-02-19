@@ -31,6 +31,7 @@ import { ListMemberComponent } from './list-member/list-member.component';
 import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
 import { MemberScheduleComponent } from './member-schedule/member-schedule.component';
 import { SearchPipe } from './search.pipe';
+import { BusRoutesManagementComponent } from './bus-routes-management/bus-routes-management.component';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -55,7 +56,8 @@ export function getAuthHttp(http) {
     ListMemberComponent,
     ScheduleManagementComponent,
     MemberScheduleComponent,
-    SearchPipe
+    SearchPipe,
+    BusRoutesManagementComponent
   ],
   imports: [
     BrowserModule,

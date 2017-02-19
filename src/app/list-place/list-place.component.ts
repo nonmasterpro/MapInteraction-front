@@ -8,11 +8,12 @@ import { PlaceService } from '../shared/place.service';
   styleUrls: ['./list-place.component.scss']
 })
 export class ListplaceComponent implements OnInit {
-
+  number : '1';
   data: any;
   options = {
     'title': 'Place',
     'action': 'place',
+    'number' : 1,
     'breadcrumb': [
     		{
         'name': 'Home',
@@ -25,11 +26,6 @@ export class ListplaceComponent implements OnInit {
     'params':
     {
       'headers': [
-        {
-          'prop': 'id',
-          'type': 'text',
-          'name': 'id'
-        },
         {
           'prop': 'image',
           'type': 'image',

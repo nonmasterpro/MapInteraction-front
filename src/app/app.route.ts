@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { UserManagementComponent } from './user-management/user-management.component';
+import { BusRoutesManagementComponent } from './bus-routes-management/bus-routes-management.component';
 import { PlacesManagementComponent } from './places-management/places-management.component';
 import { MemberManagementComponent } from './member-management/member-management.component';
 import { ListplaceComponent } from './list-place/list-place.component';
@@ -42,6 +43,10 @@ const appRoutes: Routes = [
   {
     path: 'schedule',
     component: MemberScheduleComponent
+  },
+  {
+    path: 'test',
+    component: BusRoutesManagementComponent
   },
   {
     path: '**',
