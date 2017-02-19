@@ -10,7 +10,8 @@ import { UserService } from '../shared/user.service';
 export class ListMemberComponent implements OnInit {
 
   data: any;
-  options = {
+  options = { 
+    'number' : 1,
     'title': 'Member',
     'action': 'member',
     'breadcrumb': [
@@ -26,11 +27,6 @@ export class ListMemberComponent implements OnInit {
     'params':
     {
       'headers': [
-        {
-          'prop': 'id',
-          'type': 'text',
-          'name': 'ID'
-        },
         {
           'prop': 'name',
           'type': 'text',

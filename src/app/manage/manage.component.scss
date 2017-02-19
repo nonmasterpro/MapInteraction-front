@@ -33,3 +33,9 @@ md-divider {
 .ng-invalid[required]:not(form)  {
   border-bottom: 5px solid #a94442; /* red */
 }
+
+.place-img img {
+    margin: 0;
+    width: 100%;
+    height: 130px;
+  }

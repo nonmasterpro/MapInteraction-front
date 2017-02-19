@@ -11,11 +11,11 @@ import * as _ from "lodash";
   styleUrls: ['./manage.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ManageComponent implements OnInit {
 
-	@Input() options;
+export class ManageComponent implements OnInit {
+  @Input() options;
   @Input() detail: any;
-	formManage: FormGroup;
+  formManage: FormGroup;
   p = {
     'value':''
   };
@@ -28,18 +28,18 @@ export class ManageComponent implements OnInit {
   constructor(@Inject('AppConfig') private config: any) { }
 
   ngOnInit() {
-  	this.setupForm();
+    this.setupForm();
   }
 
   setupForm() {
-  	this.formManage = new FormGroup({});
-  	this.options.params.forEach((p) => {
-  		if( p.type === 'file' ) {
-  			return;
-  		}
+    this.formManage = new FormGroup({});
+    this.options.params.forEach((p) => {
+      if( p.type === 'file' ) {
+        return;
+      }
 
-  		this.formManage.addControl(p.name, p.control);
-  	});
+      this.formManage.addControl(p.name, p.control);
+    });
   }
 
 
@@ -97,7 +97,8 @@ export class ManageComponent implements OnInit {
           objResult[value.prop] = value.value;
           
           // console.log(value);
-        });if(this.uploadFile) {
+        });
+     if(this.uploadFile) {
             objResult['images'] = [this.uploadFile.id];
           }
      return objResult;

@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { ListplaceComponent } from './list-place.component';
+import { BusRoutesManagementComponent } from './bus-routes-management.component';
 
-describe('ListplaceComponent', () => {
-  let component: ListplaceComponent;
-  let fixture: ComponentFixture<ListplaceComponent>;
+describe('BusRoutesManagementComponent', () => {
+  let component: BusRoutesManagementComponent;
+  let fixture: ComponentFixture<BusRoutesManagementComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListplaceComponent ]
+      declarations: [ BusRoutesManagementComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListplaceComponent);
+    fixture = TestBed.createComponent(BusRoutesManagementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

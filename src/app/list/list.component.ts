@@ -11,7 +11,7 @@ export class ListComponent implements OnInit {
   @Input() options;
   @Input() details: any;
   formList: FormGroup;
-
+  number : 1;
   @Output() deleteEvent = new EventEmitter<any>();
 
   constructor() { }
