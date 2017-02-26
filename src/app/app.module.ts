@@ -14,6 +14,8 @@ import { NgUploaderModule } from 'ngx-uploader';
 import { AuthService } from './shared/auth.service';
 import { UserService } from './shared/user.service';
 import { PlaceService } from './shared/place.service';
+import { RoutesService } from './shared/routes.service';
+
 
 import { AppComponent } from './app.component';
 import { UserManagementComponent }  from './user-management/user-management.component';
@@ -32,6 +34,7 @@ import { ScheduleManagementComponent } from './schedule-management/schedule-mana
 import { MemberScheduleComponent } from './member-schedule/member-schedule.component';
 import { SearchPipe } from './search.pipe';
 import { BusRoutesManagementComponent } from './bus-routes-management/bus-routes-management.component';
+import { ListRoutesComponent } from './list-routes/list-routes.component';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -57,7 +60,8 @@ export function getAuthHttp(http) {
     ScheduleManagementComponent,
     MemberScheduleComponent,
     SearchPipe,
-    BusRoutesManagementComponent
+    BusRoutesManagementComponent,
+    ListRoutesComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +88,8 @@ export function getAuthHttp(http) {
       deps: [Http, RequestOptions]
     },
     UserService,
-    PlaceService
+    PlaceService,
+    RoutesService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,4 @@
-<p>
-  bus-routes-management works! {{ user?.id }}
-</p>
+<select [ngModel]="selectedDeviceObj" (ngModelChange)="onChangeObj($event)" name="sel3">
+  <option [ngValue]="i" *ngFor="let i of deviceObjects">{{i.name}}</option>
+</select>
+{{select | json}}

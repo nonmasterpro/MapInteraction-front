@@ -3,7 +3,9 @@ let endpoints = {
     me: '/api/user',
     users: '/api/users',
     uploadImage: '/api/images',
-    places: '/api/places'
+    places: '/api/places',
+    routes: '/api/routes'
+
 };
 
 if (window && (window.location.hostname === 'localhost' || /0\.0\./.test(window.location.hostname))) {

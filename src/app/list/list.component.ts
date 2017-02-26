@@ -13,7 +13,7 @@ export class ListComponent implements OnInit {
   formList: FormGroup;
   number : 1;
   @Output() deleteEvent = new EventEmitter<any>();
-
+  test : any;
   constructor() { }
 
   ngOnInit() {
@@ -33,10 +33,23 @@ export class ListComponent implements OnInit {
   	// this.formList.addControl(p.name, p.control);
   	// });
   }
+
+  getbr(br){
+    let cbr = [];
+      for (var i = br.length - 1; i >= 0; i--) {
+        cbr.push(br[i].name)
+      }
+ this.test = cbr.join();
+ 
+ return this.test;
+  }
   
   delete(id) {
+    let c = confirm("Press a button!");
+     if (c == true) {
     this.deleteEvent.emit({
       'id': id
-    });
+    });}
+    else{}
   }
 }

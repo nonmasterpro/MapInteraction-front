@@ -34,6 +34,14 @@
             <div *ngIf=" header.type === 'text' ">
               {{ detail[header.prop] }}
             </div>
+ 
+            <div *ngIf=" header.type === 'routes' && detail.bus_routes.length == 0 ">
+              {{ detail[header.prop] }}
+              </div>
+            <div *ngIf=" header.type === 'routes' && detail.bus_routes.length != 0 ">
+              {{ getbr(detail.bus_routes) }}
+            </div>
+
           </td>
           <td><button md-raised-button [routerLink]="['edit',detail.id]"><i class="material-icons">edit</i></button></td>
           <td><button md-raised-button (click)="delete(detail.id)" color="warn"><i class="material-icons">delete</i></button></td>

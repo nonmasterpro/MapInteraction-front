@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { PlaceService } from '../shared/place.service';
+import { RoutesService } from '../shared/routes.service';
+import * as _ from "lodash";
+
 
 // import { Component, OnInit, Inject } from '@angular/core';
 // import { NgUploaderOptions } from 'ngx-uploader';
@@ -17,6 +20,8 @@ export class PlacesManagementComponent implements OnInit {
     
     id: number;
     data: any;
+    routess : any;
+    ww: any;
 
   options = {
     'title': 'Place',
@@ -36,6 +41,14 @@ export class PlacesManagementComponent implements OnInit {
         'value': '',
         'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
         'prop': 'description'
+      },
+      {
+        'name': 'Bus Routes',
+        'type': 'selection',
+        'value': '',
+        'control': new FormControl('', [<any>Validators.required]),
+        'prop': 'routes',
+        'selections': []
       },
       {
         'name': 'Cotact',
@@ -123,26 +136,79 @@ export class PlacesManagementComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private placeService: PlaceService
+    private placeService: PlaceService,
+    private routesService: RoutesService
+
     // @Inject('AppConfig') private config: any
     ) { }
 
   ngOnInit() {
+  this.test();
+
     if( this.router.url.includes('edit') ) {
       this.route.params.forEach((param: Params) => {
         this.id = param['id'];
         this.placeService.get( this.id ).then((res) => {
           this.data = res;
+          // console.log(this.data.bus_routes[0].id);
           this.options.params.forEach((p: any) => {
             p.value = this.data[ p.prop ] || '';
           })
+
+          // this.ww.push(this.data.bus_routes);
         });
+          //         for (var i = this.data.bus_routes.length - 1; i >= 0; i--) {
+          //   this.ww.push(this.data.bus_routes[i].id);
+          // }
+          // console.log(this.ww);
+          this.test2();
         this.options.action = 'edit'
       });
     } else {
       this.options.action = 'add';
     }
   }
+
+  test2(){
+
+        this.id = param['id'];
+        this.placeService.get( this.id ).then((res) => {
+          this.data = res;
+          // console.log(this.data.bus_routes[0].id);
+          this.options.params.forEach((p: any) => {
+            p.value = this.data[ p.prop ] || '';
+          })
+
+          // this.ww.push(this.data.bus_routes);
+        });
+       for (var i = this.data.bus_routes.length - 1; i >= 0; i--) {
+          this.ww.push(this.data.bus_routes[i].id);
+          }
+          console.log(this.ww);
+        this.options.action = 'edit'
+          
+  }
+
+  test(){
+         this.routesService.all().then((res) => {
+      this.routess = res;
+      let selectt = [];
+    _.forEach( this.routess, (value) => {
+            let objResult = {};
+
+              objResult['name'] = value.id+'. '+value.name;
+              objResult['value'] = value.id;
+              selectt.push(objResult)
+
+
+       
+        });
+    this.options.params[2]['selections']= selectt;
+
+    });
+    
+  }
+
   add(e) {
     this.placeService.create(e.parameters).then((res) => {
     this.router.navigate(['place']);
