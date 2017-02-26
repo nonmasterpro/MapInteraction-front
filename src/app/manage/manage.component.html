@@ -64,7 +64,7 @@
             </div>
             <hr>
         </div>
-        <!-- {{ formManage.valid }} -->
+        {{ formManage.valid }}
     </form>
     <button *ngIf="options.action === 'add'" md-button (click)="add()" class="md-raised md-primary">Add</button>
     <button *ngIf="options.action === 'edit'" md-button (click)="edit()" class="md-raised md-primary">Edit</button>

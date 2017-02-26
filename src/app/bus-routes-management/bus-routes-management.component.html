@@ -1,4 +1,7 @@
-<select [ngModel]="selectedDeviceObj" (ngModelChange)="onChangeObj($event)" name="sel3">
+<!-- <select [ngModel]="selectedDeviceObj" (ngModelChange)="onChangeObj($event)" name="sel3">
   <option [ngValue]="i" *ngFor="let i of deviceObjects">{{i.name}}</option>
 </select>
 {{select | json}}
+ -->
+<app-manage [options]="options" [detail]="data" (addEvent)="add($event)" (editEvent)="edit($event)"></app-manage>
+ 

@@ -14,7 +14,7 @@ import * as _ from "lodash";
 
 export class ManageComponent implements OnInit {
   @Input() options;
-  @Input() ww;
+  @Input() Troute;
   @Input() detail: any;
   formManage: FormGroup;
   p = {
@@ -30,6 +30,7 @@ export class ManageComponent implements OnInit {
 
   ngOnInit() {
     this.setupForm();
+    this.qq = this.Troute;
   }
 
   setupForm() {
@@ -91,8 +92,13 @@ export class ManageComponent implements OnInit {
   getParameters() {
 
     let objResult = {};
-    if(this.options.type==='place') {
+    if(this.options.type==='place'||this.options.type==='station') {
         objResult['routes'] = [];
+      }
+    else if(this.options.type==='route') {
+        objResult['stations'] = [];
+        objResult['places'] = [];
+
       }
      _.forEach( this.options.params, (value) => {
        // this.options.params.name = key; 

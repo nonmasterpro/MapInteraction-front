@@ -3,12 +3,15 @@ import { SearchPipe } from '.././search.pipe';
 import { Observable } from 'rxjs/Observable';
 import * as _ from "lodash";
 import 'rxjs/Rx';
+import { UserService } from '../shared/user.service';
+
 @Component({
   selector: 'app-member-schedule',
   templateUrl: './member-schedule.component.html',
   styleUrls: ['./member-schedule.component.scss']
 })
 export class MemberScheduleComponent implements OnInit {
+  data: any;
 
   options = {
     'showSchedule': true,
@@ -100,9 +103,13 @@ export class MemberScheduleComponent implements OnInit {
 
   search: string = '';
 
-  constructor() {
+  constructor(
+    private userService: UserService
+    ) {
   }
   ngOnInit() {
+     this.getParameters();
+
     if (this.options.params.members[0]) {
       this.member = this.options.params.members[0];
     }
@@ -119,5 +126,13 @@ export class MemberScheduleComponent implements OnInit {
       console.log(member);
     });
   }
-
+  getParameters() {
+    let objResult = {};
+       this.userService.all().then((res) => {
+      this.data = res;
+    })
+     _.forEach( this.data , (value) => {
+          console.log(value)
+        });
+  }
 }

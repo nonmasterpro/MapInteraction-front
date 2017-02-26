@@ -15,6 +15,10 @@ import { AuthService } from './shared/auth.service';
 import { UserService } from './shared/user.service';
 import { PlaceService } from './shared/place.service';
 import { RoutesService } from './shared/routes.service';
+import { StationService } from './shared/station.service';
+import { ScheduleService } from './shared/schedule.service';
+
+
 
 
 import { AppComponent } from './app.component';
@@ -28,6 +32,7 @@ import { ListComponent } from './list/list.component';
 import { ListplaceComponent } from './list-place/list-place.component';
 
 
+
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { ListMemberComponent } from './list-member/list-member.component';
 import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
@@ -35,6 +40,8 @@ import { MemberScheduleComponent } from './member-schedule/member-schedule.compo
 import { SearchPipe } from './search.pipe';
 import { BusRoutesManagementComponent } from './bus-routes-management/bus-routes-management.component';
 import { ListRoutesComponent } from './list-routes/list-routes.component';
+import { StationManagementComponent } from './station-management/station-management.component';
+import { ListStationComponent } from './list-station/list-station.component';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -61,7 +68,9 @@ export function getAuthHttp(http) {
     MemberScheduleComponent,
     SearchPipe,
     BusRoutesManagementComponent,
-    ListRoutesComponent
+    ListRoutesComponent,
+    StationManagementComponent,
+    ListStationComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +98,9 @@ export function getAuthHttp(http) {
     },
     UserService,
     PlaceService,
-    RoutesService
+    RoutesService,
+    StationService,
+    ScheduleService
   ],
   bootstrap: [AppComponent]
 })

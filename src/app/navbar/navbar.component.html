@@ -5,6 +5,9 @@
   <button md-button [routerLink]="['place']"> Place </button>
   <button md-button [routerLink]="['member']"> Member </button>
   <button md-button [routerLink]="['schedule']">Schedule </button>
+  <button md-button [routerLink]="['route']">Route </button>
+  <button md-button [routerLink]="['station']">Station </button>
+
   <span *ngIf="user"> {{ user.name }} </span>
   <div class="divider"></div>
   <button md-button *ngIf="user" (click)="logout()">Log Out</button>

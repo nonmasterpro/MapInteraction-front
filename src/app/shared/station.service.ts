@@ -1,17 +1,14 @@
 import { Injectable, Inject } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
 
-
 @Injectable()
-export class RoutesService {
+export class StationService {
 
-  constructor(
-  	private authHttp: AuthHttp,
+  constructor(private authHttp: AuthHttp,
 		@Inject('AppConfig') private config: any) { }
-
 all() {
   	return new Promise((resolve, reject) => {
-  		this.authHttp.get(this.config.apiEndpoints.routes).subscribe((res: any) => {
+  		this.authHttp.get(this.config.apiEndpoints.stations).subscribe((res: any) => {
           if(res.status === 200) {
             let places = JSON.parse(res._body);
             resolve(places);
@@ -23,7 +20,7 @@ all() {
   }
   delete(id) {
     return new Promise((resolve, reject) => {
-      this.authHttp.delete(this.config.apiEndpoints.routes + '/' + id).subscribe((res: any) => {
+      this.authHttp.delete(this.config.apiEndpoints.stations + '/' + id).subscribe((res: any) => {
       let place = JSON.parse(res._body);
       resolve(place);
         });
@@ -32,15 +29,15 @@ all() {
 
 get(id) {
     return new Promise((resolve, reject) => {
-      this.authHttp.get(this.config.apiEndpoints.routes + '/' + id).subscribe((res: any) => {
+      this.authHttp.get(this.config.apiEndpoints.stations + '/' + id).subscribe((res: any) => {
       let user = JSON.parse(res._body);
       resolve(user);
         });
     });
   }
-create(routes) {
+create(station) {
     return new Promise((resolve, reject) => {
-      this.authHttp.post(this.config.apiEndpoints.routes, routes).subscribe((res: any) => {
+      this.authHttp.post(this.config.apiEndpoints.stations, station).subscribe((res: any) => {
         console.log(res);
           if(res.status === 200) {
             let user = JSON.parse(res._body);
@@ -54,9 +51,9 @@ create(routes) {
     });
   }
 
-update(id, routes) {
+update(id, station) {
     return new Promise((resolve, reject) => {
-      this.authHttp.put(this.config.apiEndpoints.routes + '/' + id, routes).subscribe((res: any) => {
+      this.authHttp.put(this.config.apiEndpoints.stations + '/' + id, station).subscribe((res: any) => {
         console.log(res);
           if(res.status === 200) {
             let user = JSON.parse(res._body);
@@ -69,9 +66,6 @@ update(id, routes) {
       });
     });
   }
-
-
-
 
 
 

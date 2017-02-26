@@ -1,7 +1,6 @@
 <div class="body-content">
-  <h2 *ngIf="options.title === 'Place'"> Manage {{options.title}}</h2>
-  <h2 *ngIf="options.title === 'Member'"> Manage {{options.title}}</h2>
-  <h2 *ngIf="options.title === 'Schedule'"> Manage {{options.title}}</h2>
+  <h2 > Manage {{options.title}}</h2>
+
   <md-divider></md-divider>
   <md-toolbar class="breadcrumb">
     <a [href]="b.link" *ngFor="let b of options.breadcrumb">

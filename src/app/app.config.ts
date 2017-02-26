@@ -4,7 +4,9 @@ let endpoints = {
     users: '/api/users',
     uploadImage: '/api/images',
     places: '/api/places',
-    routes: '/api/routes'
+    routes: '/api/routes',
+    stations: '/api/stations'
+
 
 };
 

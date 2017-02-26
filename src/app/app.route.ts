@@ -8,6 +8,9 @@ import { ListplaceComponent } from './list-place/list-place.component';
 import { ListMemberComponent } from './list-member/list-member.component';
 import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
 import { MemberScheduleComponent } from './member-schedule/member-schedule.component';
+import { ListRoutesComponent } from './list-routes/list-routes.component';
+import { ListStationComponent } from './list-station/list-station.component';
+import { StationManagementComponent } from './station-management/station-management.component';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -45,8 +48,28 @@ const appRoutes: Routes = [
     component: MemberScheduleComponent
   },
   {
-    path: 'test',
+    path: 'route',
+    component: ListRoutesComponent
+  },
+  {
+    path: 'route/:action',
     component: BusRoutesManagementComponent
+  },
+  {
+    path: 'route/edit/:id',
+    component: BusRoutesManagementComponent
+  },
+  {
+    path: 'station',
+    component: ListStationComponent
+  },
+  {
+    path: 'station/:action',
+    component: StationManagementComponent
+  },
+  {
+    path: 'station/edit/:id',
+    component: StationManagementComponent
   },
   {
     path: '**',
