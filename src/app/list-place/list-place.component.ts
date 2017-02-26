@@ -20,7 +20,7 @@ export class ListplaceComponent implements OnInit {
         'link': '/'
     		}, {
         'name': 'Manage place',
-        'link': '/placelist'
+        'link': '/place'
     		}
     ],
     'params':
@@ -47,6 +47,11 @@ export class ListplaceComponent implements OnInit {
           'prop': 'contact',
           'type': 'text',
           'name': 'Cotact'
+        },
+        {
+          'prop': 'bus_routes',
+          'type': 'routes',
+          'name': 'Bus Routes'
         },
         {
           'prop': 'type',

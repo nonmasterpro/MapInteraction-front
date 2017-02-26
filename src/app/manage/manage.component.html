@@ -28,7 +28,22 @@
                 </md-input-container>
                 
             </div>
-            <div *ngIf="p.type === 'selection'">
+            <div *ngIf="p.type === 'selection'&& p.prop === 'routes'">
+                <!-- <label>{{ p.name }}</label> -->
+                <br>
+                <md-select placeholder="{{ p.name }}" (ngModelChange)="onChange($event)" [formControlName]="p.name" [(ngModel)]="p.value">
+                    <md-option *ngFor="let s of p.selections" [value]=" s.value " >
+                        {{ s.name }}
+                    </md-option>
+                </md-select>
+                &nbsp; Routes : {{qq | json}}
+
+                <!-- <select>
+                <option></option>
+                <option value="{{ s.value }}" *ngFor="let s of p.selections">{{ s.name }}</option>
+            </select> -->
+            </div>
+            <div *ngIf="p.type === 'selection'&& p.prop !== 'routes'">
                 <!-- <label>{{ p.name }}</label> -->
                 <br>
                 <md-select placeholder="{{ p.name }}" [formControlName]="p.name" [(ngModel)]="p.value">

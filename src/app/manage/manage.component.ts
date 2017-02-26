@@ -14,6 +14,7 @@ import * as _ from "lodash";
 
 export class ManageComponent implements OnInit {
   @Input() options;
+  @Input() ww;
   @Input() detail: any;
   formManage: FormGroup;
   p = {
@@ -90,23 +91,33 @@ export class ManageComponent implements OnInit {
   getParameters() {
 
     let objResult = {};
+    if(this.options.type==='place') {
+        objResult['routes'] = [];
+      }
      _.forEach( this.options.params, (value) => {
        // this.options.params.name = key; 
        // this.options.params.value = value.value; 
           // console.log('key: ' + key + ' | value: ' + value);
-          objResult[value.prop] = value.value;
-          
+           if(value.prop==='routes') {
+              objResult[value.prop] = this.qq;
+              // objResult[value.prop].push(value.value)
+           } 
+           else {
+              objResult[value.prop] = value.value;
+
+           }
           // console.log(value);
         });
      if(this.uploadFile) {
             objResult['images'] = [this.uploadFile.id];
           }
-      if(this.options.type==='place') {
-        objResult['routes'] = [];
-      }
+      // if(this.options.type==='place') {
+      //   objResult['routes'] = [];
+      // }
      return objResult;
   }
   test(){
+    // console.log('aa');
     console.log(this.getParameters());
   }
   add() {
@@ -115,5 +126,19 @@ export class ManageComponent implements OnInit {
       'parameters': objResult
     });
   }
+  qq =[];
+  yy =[];
+  onChange(deviceValue) {
+    console.log(deviceValue);
+    if(deviceValue !== '') {
+     if(this.qq.indexOf(deviceValue)!= -1){
+       let s = this.qq.indexOf(deviceValue);
+          this.qq.splice(s, 1);
+     }
+     else{
+          this.qq.push(deviceValue);
+     }
+    }
+}
 
 }
