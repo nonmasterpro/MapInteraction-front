@@ -21,7 +21,7 @@ export class PlacesManagementComponent implements OnInit {
     id: number;
     data: any;
     routess : any;
-    ww: any;
+    ww= [];
 
   options = {
     'title': 'Place',
@@ -146,48 +146,68 @@ export class PlacesManagementComponent implements OnInit {
   this.test();
 
     if( this.router.url.includes('edit') ) {
-      this.route.params.forEach((param: Params) => {
-        this.id = param['id'];
-        this.placeService.get( this.id ).then((res) => {
-          this.data = res;
+    //   this.route.params.forEach((param: Params) => {
+    //     this.id = param['id'];
+    //     this.placeService.get( this.id ).then((res) => {
+    //       this.data = res;
           // console.log(this.data.bus_routes[0].id);
-          this.options.params.forEach((p: any) => {
-            p.value = this.data[ p.prop ] || '';
-          })
+          // this.options.params.forEach((p: any) => {
+          //   p.value = this.data[ p.prop ] || '';
+          // })
 
           // this.ww.push(this.data.bus_routes);
-        });
+        // });
           //         for (var i = this.data.bus_routes.length - 1; i >= 0; i--) {
           //   this.ww.push(this.data.bus_routes[i].id);
           // }
           // console.log(this.ww);
+          // this.test2();
           this.test2();
         this.options.action = 'edit'
-      });
+      // });
     } else {
       this.options.action = 'add';
     }
   }
 
   test2(){
-
+    let ss= [];
+    let y = 0;
+    this.route.params.forEach((param: Params) => {
         this.id = param['id'];
         this.placeService.get( this.id ).then((res) => {
           this.data = res;
-          // console.log(this.data.bus_routes[0].id);
           this.options.params.forEach((p: any) => {
             p.value = this.data[ p.prop ] || '';
           })
-
-          // this.ww.push(this.data.bus_routes);
+          this.data.bus_routes.forEach((p: any) => {
+            ss.push(this.data.bus_routes[y].id);
+            y++;
+          })
         });
-       for (var i = this.data.bus_routes.length - 1; i >= 0; i--) {
-          this.ww.push(this.data.bus_routes[i].id);
-          }
-          console.log(this.ww);
-        this.options.action = 'edit'
-          
+        this.ww = ss;
+    });
+        console.log(ss);
+
   }
+
+  //       this.id = param['id'];
+  //       this.placeService.get( this.id ).then((res) => {
+  //         this.data = res;
+  //         // console.log(this.data.bus_routes[0].id);
+  //         this.options.params.forEach((p: any) => {
+  //           p.value = this.data[ p.prop ] || '';
+  //         })
+
+  //         // this.ww.push(this.data.bus_routes);
+  //       });
+  //      for (var i = this.data.bus_routes.length - 1; i >= 0; i--) {
+  //         this.ww.push(this.data.bus_routes[i].id);
+  //         }
+  //         console.log(this.ww);
+  //       this.options.action = 'edit'
+          
+  // }
 
   test(){
          this.routesService.all().then((res) => {
