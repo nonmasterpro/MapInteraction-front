@@ -59,6 +59,7 @@ export class AuthService {
 					me.id,
 					me.email,
 					me.name,
+					me.roleName,
 					me.created_at,
 					me.updated_at
 				));

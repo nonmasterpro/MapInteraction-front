@@ -17,6 +17,8 @@ import { PlaceService } from './shared/place.service';
 import { RoutesService } from './shared/routes.service';
 import { StationService } from './shared/station.service';
 import { ScheduleService } from './shared/schedule.service';
+import { ImageService } from './shared/image.service';
+
 
 
 
@@ -42,6 +44,9 @@ import { BusRoutesManagementComponent } from './bus-routes-management/bus-routes
 import { ListRoutesComponent } from './list-routes/list-routes.component';
 import { StationManagementComponent } from './station-management/station-management.component';
 import { ListStationComponent } from './list-station/list-station.component';
+import { SubjectManagementComponent } from './subject-management/subject-management.component';
+import { PlaceDetailComponent } from './place-detail/place-detail.component';
+import { SearchTypePipe } from './search-type.pipe';
 
 export function getAuthHttp(http) {
   return new AuthHttp(new AuthConfig({
@@ -70,7 +75,10 @@ export function getAuthHttp(http) {
     BusRoutesManagementComponent,
     ListRoutesComponent,
     StationManagementComponent,
-    ListStationComponent
+    ListStationComponent,
+    SubjectManagementComponent,
+    PlaceDetailComponent,
+    SearchTypePipe
   ],
   imports: [
     BrowserModule,
@@ -100,7 +108,8 @@ export function getAuthHttp(http) {
     PlaceService,
     RoutesService,
     StationService,
-    ScheduleService
+    ScheduleService,
+    ImageService
   ],
   bootstrap: [AppComponent]
 })

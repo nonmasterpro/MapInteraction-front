@@ -33,6 +33,10 @@ md-divider {
 .ng-invalid[required]:not(form)  {
   border-bottom: 5px solid #a94442; /* red */
 }
+.md-card {
+    width: 20%;
+    height: 130px;
+}
 
 .place-img img {
     margin: 0;

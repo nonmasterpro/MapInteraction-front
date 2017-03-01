@@ -1,15 +1,15 @@
 <md-toolbar>
-  <span>Map Interaction for CMU student</span>
-  <span class="fill-remaining-space"></span>
-
-  <button md-button [routerLink]="['place']"> Place </button>
-  <button md-button [routerLink]="['member']"> Member </button>
-  <button md-button [routerLink]="['schedule']">Schedule </button>
-  <button md-button [routerLink]="['route']">Route </button>
-  <button md-button [routerLink]="['station']">Station </button>
-
-  <span *ngIf="user"> {{ user.name }} </span>
-  <div class="divider"></div>
-  <button md-button *ngIf="user" (click)="logout()">Log Out</button>
-  <button md-button *ngIf="!user" (click)="openDialog()">Log In</button>
+    <span>Map Interaction for CMU student</span>
+    <span class="fill-remaining-space"></span>
+    <div *ngIf="user && user.roleName === 'admin'">
+        <button md-button [routerLink]="['place']"> Place </button>
+        <button md-button [routerLink]="['member']"> Member </button>
+        <button md-button [routerLink]="['schedule']">Schedule </button>
+        <button md-button [routerLink]="['route']">Route </button>
+        <button md-button [routerLink]="['station']">Station </button>
+    </div>
+    <span *ngIf="user"> {{ user.name }} </span>
+    <div class="divider"></div>
+    <button md-button *ngIf="user" (click)="logout()">Log Out</button>
+    <button md-button *ngIf="!user" (click)="openDialog()">Log In</button>
 </md-toolbar>

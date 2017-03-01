@@ -1,4 +1,4 @@
-<div class="schedule">
+<div class="schedule" *ngIf="user && user.roleName === 'admin'&& toggleds" >
   <div class="scheduleLeft">
 
     <div class="member-container">
@@ -15,5 +15,5 @@
       </div>
     </div>
   </div>
-  <app-schedule-management [options]="options" [member]="member"></app-schedule-management>
+  <app-schedule-management *ngIf="toggled" [options]="options" [member]="member"></app-schedule-management>
 </div>

@@ -10,7 +10,9 @@ import { ScheduleManagementComponent } from './schedule-management/schedule-mana
 import { MemberScheduleComponent } from './member-schedule/member-schedule.component';
 import { ListRoutesComponent } from './list-routes/list-routes.component';
 import { ListStationComponent } from './list-station/list-station.component';
+import { SubjectManagementComponent } from './subject-management/subject-management.component';
 import { StationManagementComponent } from './station-management/station-management.component';
+import { PlaceDetailComponent } from './place-detail/place-detail.component';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -34,6 +36,10 @@ const appRoutes: Routes = [
   {
     path: 'place/edit/:id',
     component: PlacesManagementComponent
+  },
+  {
+    path: 'place/detail/:id',
+    component: PlaceDetailComponent
   },
   {
     path: 'place',
@@ -70,6 +76,18 @@ const appRoutes: Routes = [
   {
     path: 'station/edit/:id',
     component: StationManagementComponent
+  },
+  {
+    path: 'schedule/:action',
+    component: SubjectManagementComponent
+  },
+  {
+    path: 'schedule/add/:id',
+    component: SubjectManagementComponent
+  },
+  {
+    path: 'schedule/edit/:id',
+    component: SubjectManagementComponent
   },
   {
     path: '**',

@@ -4,6 +4,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { PlaceService } from '../shared/place.service';
 import { RoutesService } from '../shared/routes.service';
 import * as _ from "lodash";
+import { AuthService } from '../shared/auth.service';
+import { User } from '../models/user';
 
 
 // import { Component, OnInit, Inject } from '@angular/core';
@@ -17,116 +19,120 @@ import * as _ from "lodash";
 })
 
 export class PlacesManagementComponent implements OnInit {
+    user: User;
+   toggled: boolean;
     
     id: number;
     data: any;
     routess : any;
     ww= [];
+    imggg: any;
+    options = {
+      'title': 'Place',
+      'type': 'place',
+      'action': 'add',
+      'params': [
+        {
+          'name': 'Name',
+          'type': 'text',
+          'value': '',
+          'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
+          'prop': 'name'
+        },
+        {
+          'name': 'Description',
+          'type': 'text',
+          'value': '',
+          'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
+          'prop': 'description'
+        },
+        {
+          'name': 'Bus Routes',
+          'type': 'selection',
+          'value': '',
+          'control': new FormControl('', [<any>Validators.required]),
+          'prop': 'routes',
+          'selections': []
+        },
+        {
+          'name': 'Cotact',
+          'type': 'text',
+          'value': '',
+          'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
+          'prop': 'contact'
+        },
+        {
+          'name': 'Type',
+          'type': 'selection',
+          'value': '',
+          'control': new FormControl('', [<any>Validators.required]),
+          'prop': 'type',
+          'selections': [
+            {
+              'name': 'Building',
+              'value': 'building'
+            },
+            {
+              'name': 'Sport Field',
+              'value': 'sportField'
+            },
+            {
+              'name': 'Cafe',
+              'value': 'cafe'
+            },
+            {
+              'name': 'Restaurant',
+              'value': 'restaurant'
+            },
+            {
+              'name': 'Car Parking',
+              'value': 'carParking'
+            },
+            {
+              'name': 'Dormitory',
+              'value': 'dormitory'
+            },
+            {
+              'name': 'Landmark',
+              'value': 'landmark'
+            },
+            {
+              'name': 'ATM',
+              'value': 'ATM'
+            }
+          ]
+        },
+        {
+          'name': 'Website',
+          'type': 'text',
+          'value': '',
+          'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
+          'prop': 'website'
+        },
+        {
+          'name': 'X',
+          'type': 'text',
+          'value': '',
+          'prop': 'x',
+          'control': new FormControl('', [<any>Validators.required, <any>Validators.pattern('[-]?[0-9]+[.]([0-9]{6,25})')])
 
-  options = {
-    'title': 'Place',
-    'type': 'place',
-    'action': 'add',
-    'params': [
-      {
-        'name': 'Name',
-        'type': 'text',
-        'value': '',
-        'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
-        'prop': 'name'
-      },
-      {
-        'name': 'Description',
-        'type': 'text',
-        'value': '',
-        'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
-        'prop': 'description'
-      },
-      {
-        'name': 'Bus Routes',
-        'type': 'selection',
-        'value': '',
-        'control': new FormControl('', [<any>Validators.required]),
-        'prop': 'routes',
-        'selections': []
-      },
-      {
-        'name': 'Cotact',
-        'type': 'text',
-        'value': '',
-        'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
-        'prop': 'contact'
-      },
-      {
-        'name': 'Type',
-        'type': 'selection',
-        'value': '',
-        'control': new FormControl('', [<any>Validators.required]),
-        'prop': 'type',
-        'selections': [
-          {
-            'name': 'Building',
-            'value': 'building'
-          },
-          {
-            'name': 'Sport Field',
-            'value': 'sportField'
-          },
-          {
-            'name': 'Cafe',
-            'value': 'cafe'
-          },
-          {
-            'name': 'Restaurant',
-            'value': 'restaurant'
-          },
-          {
-            'name': 'Car Parking',
-            'value': 'carParking'
-          },
-          {
-            'name': 'Dormitory',
-            'value': 'dormitory'
-          },
-          {
-            'name': 'Landmark',
-            'value': 'landmark'
-          },
-          {
-            'name': 'ATM',
-            'value': 'ATM'
-          }
-        ]
-      },
-      {
-        'name': 'Website',
-        'type': 'text',
-        'value': '',
-        'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)]),
-        'prop': 'website'
-      },
-      {
-        'name': 'X',
-        'type': 'text',
-        'value': '',
-        'prop': 'x',
-        'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)])
-        // 'control': new FormControl('', [<any>Validators.required, <any>Validators.pattern('^\d+(\.\d{1,2})?$')])
-      },
-      {
-        'name': 'Y',
-        'type': 'text',
-        'value': '',
-        'prop': 'y',
-        'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)])
-      },
-      {
-        'name': 'Picture',
-        'type': 'file',
-        'value': ''
-      }
-    ]
-  };
+          // 'control': new FormControl('', [<any>Validators.required, <any>Validators.pattern('^\d+(\.\d{1,2})?$')])
+        },
+        {
+          'name': 'Y',
+          'type': 'text',
+          'value': '',
+          'prop': 'y',
+          'control': new FormControl('', [<any>Validators.required, <any>Validators.pattern('[-]?[0-9]+[.]([0-9]{6,25})')])
+
+        },
+        {
+          'name': 'Picture',
+          'type': 'file',
+          'value': ''
+        }
+      ]
+    };
 	// types = [
  //    {value: 't1', viewValue: 'Shop'},
  //    {value: 't2', viewValue: 'Building'},
@@ -137,13 +143,19 @@ export class PlacesManagementComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private placeService: PlaceService,
-    private routesService: RoutesService
+    private routesService: RoutesService,
+    private authService: AuthService
 
     // @Inject('AppConfig') private config: any
     ) { }
 
   ngOnInit() {
-  this.test();
+    this.authService.obMe.subscribe((user: User) => {
+      this.user = user;
+       this.toggled =true;
+ 
+     });
+  this.getRoutesSelecttion();
 
     if( this.router.url.includes('edit') ) {
     //   this.route.params.forEach((param: Params) => {
@@ -162,7 +174,7 @@ export class PlacesManagementComponent implements OnInit {
           // }
           // console.log(this.ww);
           // this.test2();
-          this.test2();
+          this.getData();
         this.options.action = 'edit'
       // });
     } else {
@@ -170,13 +182,15 @@ export class PlacesManagementComponent implements OnInit {
     }
   }
 
-  test2(){
+  getData(){
     let ss= [];
     let y = 0;
     this.route.params.forEach((param: Params) => {
         this.id = param['id'];
         this.placeService.get( this.id ).then((res) => {
           this.data = res;
+          this.imggg = this.data.images[0];
+          // console.log(this.imggg);
           this.options.params.forEach((p: any) => {
             p.value = this.data[ p.prop ] || '';
           })
@@ -187,7 +201,7 @@ export class PlacesManagementComponent implements OnInit {
         });
         this.ww = ss;
     });
-        console.log(ss);
+        // console.log(ss);
 
   }
 
@@ -209,7 +223,7 @@ export class PlacesManagementComponent implements OnInit {
           
   // }
 
-  test(){
+  getRoutesSelecttion(){
          this.routesService.all().then((res) => {
       this.routess = res;
       let selectt = [];

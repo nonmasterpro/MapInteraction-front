@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/user.service';
+import { AuthService } from '../shared/auth.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-list-member',
@@ -8,7 +10,8 @@ import { UserService } from '../shared/user.service';
   styleUrls: ['./list-member.component.scss']
 })
 export class ListMemberComponent implements OnInit {
-
+user: User;
+   toggled: boolean;
   data: any;
   options = { 
     'number' : 1,
@@ -51,11 +54,18 @@ export class ListMemberComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService) { }
+    private userService: UserService,
+    private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.obMe.subscribe((user: User) => {
+      this.user = user;
+       this.toggled =true;
+
+     });
     this.userService.all().then((res) => {
       this.data = res;
+      console.log(res)
     });
   }
 
