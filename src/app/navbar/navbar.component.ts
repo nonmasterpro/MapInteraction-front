@@ -9,7 +9,9 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { NotificationsService } from 'angular2-notifications';
 
-import { UserService } from '../shared/user.service';
+import { UserService } from '../shared/user.service'
+import { Router, Params, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-navbar',
@@ -22,6 +24,8 @@ export class NavbarComponent implements OnInit {
 
   user: User;
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     public dialog: MdDialog,
     private authService: AuthService,
     private _notificationsService: NotificationsService,
@@ -63,6 +67,8 @@ export class NavbarComponent implements OnInit {
             maxLength: 100
         }
     );
+    this.router.navigate(['/**']);
+
   }
 
 }
