@@ -4,8 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import * as _ from "lodash";
 import 'rxjs/Rx';
 import { UserService } from '../shared/user.service';
-import { AuthService } from '../shared/auth.service';
-import { User } from '../models/user';
+
 
 @Component({
   selector: 'app-member-schedule',
@@ -13,8 +12,7 @@ import { User } from '../models/user';
   styleUrls: ['./member-schedule.component.scss']
 })
 export class MemberScheduleComponent implements OnInit {
-    user: User;
-   toggleds: boolean;
+
   data: any;
  
   options = {
@@ -72,15 +70,9 @@ export class MemberScheduleComponent implements OnInit {
   search: string = '';
 
   constructor(
-    private userService: UserService,
-    private authService: AuthService
-    ) {}
+    private userService: UserService    ) {}
   ngOnInit() {
-    this.authService.obMe.subscribe((user: User) => {
-      this.user = user;
-       this.toggleds =true;
- 
-     });
+    
      this.getParameters();
        // this.options.params.members = this.test;
 
