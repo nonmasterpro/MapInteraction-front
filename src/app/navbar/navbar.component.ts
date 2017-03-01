@@ -8,6 +8,9 @@ import { DialogLoginComponent } from '../dialog-login/dialog-login.component';
 import { MdDialog, MdDialogRef } from '@angular/material';
 
 import { NotificationsService } from 'angular2-notifications';
+
+import { UserService } from '../shared/user.service';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -18,18 +21,21 @@ export class NavbarComponent implements OnInit {
   dialogRef: MdDialogRef<DialogLoginComponent>;
 
   user: User;
-
   constructor(
     public dialog: MdDialog,
     private authService: AuthService,
-    private _notificationsService: NotificationsService
+    private _notificationsService: NotificationsService,
+    private userService: UserService
+
   ) { }
 
   ngOnInit() {
 
     this.authService.obMe.subscribe((user: User) => {
       this.user = user;
-    })
+      console.log(this.user);
+     
+    });
 
   }
 

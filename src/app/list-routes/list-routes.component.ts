@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { RoutesService } from '../shared/routes.service';
+import { AuthService } from '../shared/auth.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-list-routes',
@@ -8,11 +10,14 @@ import { RoutesService } from '../shared/routes.service';
   styleUrls: ['./list-routes.component.scss']
 })
 export class ListRoutesComponent implements OnInit {
+    user: User;
+   toggled: boolean;
   data: any;
   constructor( 
   	private route: ActivatedRoute,
     private router: Router,
-    private routesService: RoutesService) { }
+    private routesService: RoutesService,
+    private authService: AuthService) { }
   options = {
     'title': 'Route',
     'action': 'route',
@@ -39,6 +44,11 @@ export class ListRoutesComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.authService.obMe.subscribe((user: User) => {
+      this.user = user;
+       this.toggled =true;
+ 
+     });
       this.routesService.all().then((res) => {
       this.data = res;
       console.log(res);

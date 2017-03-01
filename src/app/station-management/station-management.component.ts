@@ -4,6 +4,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { PlaceService } from '../shared/place.service';
 import { RoutesService } from '../shared/routes.service';
 import { StationService } from '../shared/station.service';
+import { AuthService } from '../shared/auth.service';
+import { User } from '../models/user';
 
 import * as _ from "lodash";
 
@@ -14,6 +16,8 @@ import * as _ from "lodash";
   styleUrls: ['./station-management.component.scss']
 })
 export class StationManagementComponent implements OnInit {
+    user: User;
+   toggled: boolean;
 id: number;
     data: any;
     routess : any;
@@ -44,7 +48,7 @@ id: number;
         'type': 'text',
         'value': '',
         'prop': 'x',
-        'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)])
+        'control': new FormControl('', [<any>Validators.required, <any>Validators.pattern('[-]?[0-9]+[.]([0-9]{6,25})')])
         // 'control': new FormControl('', [<any>Validators.required, <any>Validators.pattern('^\d+(\.\d{1,2})?$')])
       },
       {
@@ -52,7 +56,7 @@ id: number;
         'type': 'text',
         'value': '',
         'prop': 'y',
-        'control': new FormControl('', [<any>Validators.required, <any>Validators.minLength(2)])
+        'control': new FormControl('', [<any>Validators.required, <any>Validators.pattern('[-]?[0-9]+[.]([0-9]{6,25})')])
       }
     ]
   };
@@ -61,20 +65,26 @@ id: number;
     private router: Router,
     private placeService: PlaceService,
     private routesService: RoutesService,
-    private stationService: StationService) { }
+    private stationService: StationService,
+    private authService: AuthService) { }
 
   ngOnInit() {
-  	 this.test();
+    this.authService.obMe.subscribe((user: User) => {
+      this.user = user;
+       this.toggled =true;
+ 
+     });
+  	 this.getRoutes();
 
     if( this.router.url.includes('edit') ) {
-          this.test2();
+          this.getEditData();
         this.options.action = 'edit'
 
     } else {
       this.options.action = 'add';
     }
   }
-   test2(){
+   getEditData(){
     let ss= [];
     let y = 0;
     this.route.params.forEach((param: Params) => {
@@ -95,7 +105,7 @@ id: number;
 
   }
 
- test(){
+ getRoutes(){
          this.routesService.all().then((res) => {
       this.routess = res;
       let selectt = [];

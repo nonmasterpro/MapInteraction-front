@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import * as _ from "lodash";
 import 'rxjs/Rx';
 import { UserService } from '../shared/user.service';
+import { AuthService } from '../shared/auth.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-member-schedule',
@@ -11,8 +13,10 @@ import { UserService } from '../shared/user.service';
   styleUrls: ['./member-schedule.component.scss']
 })
 export class MemberScheduleComponent implements OnInit {
+    user: User;
+   toggleds: boolean;
   data: any;
-
+ 
   options = {
     'showSchedule': true,
     'title': 'Schedule',
@@ -31,91 +35,64 @@ export class MemberScheduleComponent implements OnInit {
     {
       'headers': [
         {
-          'prop': 'subject',
+          'prop': 'courseName',
           'type': 'text',
-          'name': 'Subject',
-          'maxWidth': '250'
+          'name': 'CourseName',
         },
         {
-          'prop': 'time',
+          'prop': 'day',
           'type': 'text',
-          'name': 'Time'
+          'name': 'Day'
         },
         {
-          'prop': 'place',
+          'prop': 'start',
+          'type': 'text',
+          'name': 'Start'
+        },
+        {
+          'prop': 'end',
+          'type': 'text',
+          'name': 'End'
+        },
+        {
+          'prop': 'place_id',
           'type': 'text',
           'name': 'Place'
         }
       ],
+
       'members': [
-        {
-          'id': '1',
-          'name': 'member1',
-          'subjects': [
-            { 'name': 'subject1' },
-            { 'name': 'subject2' },
-            { 'name': 'subject3' }
-          ]
-        },
-        {
-          'id': '2',
-          'name': 'shine'
-        },
-        {
-          'id': '3',
-          'name': 'kim'
-        },
-        {
-          'id': '4',
-          'name': 'non'
-        },
-        {
-          'id': '5',
-          'name': 'que'
-        },
-        {
-          'id': '6',
-          'name': 'karj'
-        },
-        {
-          'id': '7',
-          'name': 'member7'
-        },
-        {
-          'id': '8',
-          'name': 'member8'
-        },
-        {
-          'id': '9',
-          'name': 'member9'
-        },
-        {
-          'id': '10',
-          'name': 'member10'
-        }
       ]
     }
   };
 
   member: any;
-  @ViewChild('input')
-  input: ElementRef;
+  @ViewChild('input') input: ElementRef;
 
   search: string = '';
 
   constructor(
-    private userService: UserService
-    ) {
-  }
+    private userService: UserService,
+    private authService: AuthService
+    ) {}
   ngOnInit() {
+    this.authService.obMe.subscribe((user: User) => {
+      this.user = user;
+       this.toggleds =true;
+ 
+     });
      this.getParameters();
+       // this.options.params.members = this.test;
 
-    if (this.options.params.members[0]) {
-      this.member = this.options.params.members[0];
-    }
+ // if (this.options.params.members[0]) {
+ //      this.member = this.options.params.members[0];
+
+ //    }
+   
 
     let eventObservable = Observable.fromEvent(this.input.nativeElement, 'keyup')
     eventObservable.subscribe();
+    console.log(eventObservable);
 
   }
   setSchedule(member) {
@@ -127,12 +104,51 @@ export class MemberScheduleComponent implements OnInit {
     });
   }
   getParameters() {
-    let objResult = {};
+    let y =0;
+    let ss = [];
        this.userService.all().then((res) => {
       this.data = res;
-    })
      _.forEach( this.data , (value) => {
-          console.log(value)
+    let objResult = {};
+    // console.log(value.schedules);
+              objResult['name'] = value.name;
+              objResult['id'] = value.id;
+              objResult['subjects'] = value.schedules;
+              ss.push(objResult);
+          // console.log(ss);
+
+
+    });
+     // console.log(ss);
+       // this.options.params.members = ss;
+       this.options.params.members = ss;
+       this.member = this.options.params.members[0];
+       this.toggled =true;
+
+     // console.log(this.options.params);
+    //     if (this.options.params.members[0]) {
+    //   this.member = this.options.params.members[0];
+
+    // }
+
+     //  _.forEach( this.data.schedules[y] , (value) => {
+     // console.log(value)
+      
+     //        ss.push(value);
+     //        y++;
+     //      });
+    //    _.forEach( this.data.schedules , (value) => {
+    //       console.log(value)
+    // })
+     // this.data.schedules.forEach((p: any) => {
+     //        ss.push(this.data.bus_routes);
+     //        y++;
+     //      console.log(ss)
+
+     //      })
         });
+       return ss;
   }
+   toggled: boolean;
+  
 }

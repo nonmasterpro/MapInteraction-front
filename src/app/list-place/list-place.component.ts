@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { PlaceService } from '../shared/place.service';
+import { AuthService } from '../shared/auth.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-list-place',
@@ -8,6 +10,8 @@ import { PlaceService } from '../shared/place.service';
   styleUrls: ['./list-place.component.scss']
 })
 export class ListplaceComponent implements OnInit {
+    user: User;
+   toggled: boolean;
   number : '1';
   data: any;
   options = {
@@ -79,11 +83,17 @@ export class ListplaceComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private placeService: PlaceService
+    private placeService: PlaceService,
+    private authService: AuthService
   )
   { }
 
   ngOnInit() {
+    this.authService.obMe.subscribe((user: User) => {
+      this.user = user;
+       this.toggled =true;
+ 
+     });
       this.placeService.all().then((res) => {
       this.data = res;
     });

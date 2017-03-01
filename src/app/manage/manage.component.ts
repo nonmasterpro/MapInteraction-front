@@ -1,7 +1,12 @@
 import { Component, OnInit, Input, Inject, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Router, Params, ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { NgUploaderOptions } from 'ngx-uploader';
 import * as _ from "lodash";
+import { ImageService } from '../shared/image.service';
+
+
+
 
 
 
@@ -15,24 +20,35 @@ import * as _ from "lodash";
 export class ManageComponent implements OnInit {
   @Input() options;
   @Input() Troute;
+  @Input() Imggg;
   @Input() detail: any;
   formManage: FormGroup;
   p = {
     'value':''
   };
-  
-
+  imgg: any;
 
   @Output() addEvent = new EventEmitter<any>();
   @Output() editEvent = new EventEmitter<any>();
+  @Output() changeEvent = new EventEmitter<any>();
 
-  constructor(@Inject('AppConfig') private config: any) { }
+
+  constructor(
+    @Inject('AppConfig') 
+    private config: any, 
+    private route: ActivatedRoute,
+    private router: Router,
+    private imageService: ImageService
+
+    ) { }
 
   ngOnInit() {
+     
     this.setupForm();
     this.qq = this.Troute;
+    
   }
-
+  
   setupForm() {
     this.formManage = new FormGroup({});
     this.options.params.forEach((p) => {
@@ -73,6 +89,14 @@ export class ManageComponent implements OnInit {
     }
   }
 
+  deletePic(id){
+    this.imageService.delete(id).then((res) => {
+      location.reload();
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
   edit() {
    let objResult = this.getParameters(); 
     this.editEvent.emit({
@@ -93,12 +117,17 @@ export class ManageComponent implements OnInit {
 
     let objResult = {};
     if(this.options.type==='place'||this.options.type==='station') {
-        objResult['routes'] = [];
+        objResult['user_id'] = [];
       }
     else if(this.options.type==='route') {
         objResult['stations'] = [];
         objResult['places'] = [];
 
+      }
+      else if(this.options.type==='course'&& this.options.action==='add') {
+        this.route.params.forEach((param: Params) => {
+        objResult['userId']  = param['id'];
+          })
       }
      _.forEach( this.options.params, (value) => {
        // this.options.params.name = key; 
@@ -108,6 +137,9 @@ export class ManageComponent implements OnInit {
               objResult[value.prop] = this.qq;
               // objResult[value.prop].push(value.value)
            } 
+           else if(value.prop==='qq'){
+
+           }
            else {
               objResult[value.prop] = value.value;
 
@@ -124,6 +156,11 @@ export class ManageComponent implements OnInit {
   }
   test(){
     // console.log('aa');
+     // this.getimgg(this.Imggg)
+      console.log(this.Imggg)
+      // console.log(this.imgg)
+
+
     console.log(this.getParameters());
   }
   add() {
@@ -145,6 +182,12 @@ export class ManageComponent implements OnInit {
           this.qq.push(deviceValue);
      }
     }
+}
+onChange2(deviceValue) {
+    console.log(deviceValue);
+      this.changeEvent.emit({
+      'parameters': deviceValue
+    });
 }
 
 }

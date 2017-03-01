@@ -9,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { RoutesService } from '../shared/routes.service';
-
+import { AuthService } from '../shared/auth.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-bus-routes-management',
@@ -17,6 +18,8 @@ import { RoutesService } from '../shared/routes.service';
   styleUrls: ['./bus-routes-management.component.scss']
 })
 export class BusRoutesManagementComponent implements OnInit {
+  user: User;
+   toggled: boolean;
 	// user : any;
  //  deviceObjects = [{name: 1}, {name: 2}, {name: 3}];
  //  selectedDeviceObj = this.deviceObjects[1];
@@ -53,29 +56,74 @@ export class BusRoutesManagementComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private routesService: RoutesService
+    private routesService: RoutesService,
+    private authService: AuthService
+    
     // private authService: AuthService,
 
     ) {    }
    
   ngOnInit() {
+    this.authService.obMe.subscribe((user: User) => {
+      this.user = user;
+       this.toggled =true;
+ 
+     });
     if( this.router.url.includes('edit') ) {
-      this.route.params.forEach((param: Params) => {
+      // this.route.params.forEach((param: Params) => {
+      //   this.id = param['id'];
+      //   this.routesService.get( this.id ).then((res) => {
+      //     this.data = res;
+      //     console.log(res);
+      //     this.options.params.forEach((p: any) => {
+      //       p.value = this.data[ p.prop ] || '';
+      //     })
+      //   });
+      // });
+      this.getData();
+        this.options.action = 'edit'
+
+    } else {
+      this.options.action = 'add';
+    }
+  }
+ww:any;
+ee:any;
+   getData(){
+    let ss= [];
+    let dd= [];
+
+    let y = 0;
+    let z = 0;
+    this.route.params.forEach((param: Params) => {
         this.id = param['id'];
         this.routesService.get( this.id ).then((res) => {
           this.data = res;
           this.options.params.forEach((p: any) => {
             p.value = this.data[ p.prop ] || '';
           })
+          this.data.bus_stations.forEach((p: any) => {
+            ss.push(this.data.bus_stations[y].id);
+            y++;
+          })
+           this.data.places.forEach((p: any) => {
+            dd.push(this.data.places[y].id);
+            z++;
+          })
         });
-        this.options.action = 'edit'
-      });
-    } else {
-      this.options.action = 'add';
-    }
+        this.ww = ss;
+        this.ee = dd;
+
+
+    });
+        // console.log(ss);
+
   }
+
   edit(e) {
     this.id
+    e.parameters.stations =this.ww;
+    e.parameters.places =this.ee;
      this.routesService.update(this.id,e.parameters).then((res) => {
       this.router.navigate(['route']);
     }, (error) => {

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
+import { ScheduleService } from '../shared/schedule.service';
 
 @Component({
   selector: 'app-schedule-management',
@@ -10,7 +11,9 @@ export class ScheduleManagementComponent implements OnInit {
 
   @Input() options;
   @Input() member;
-  constructor() { }
+  constructor(
+    private scheduleService: ScheduleService
+    ) { }
 
   ngOnInit() {
 
@@ -20,6 +23,18 @@ export class ScheduleManagementComponent implements OnInit {
 
   }
 
+delete(id) {
+  let c = confirm("Press a button!");
+     if (c == true) {
+   this.scheduleService.delete(id).then((res) => {
+      location.reload();
+    }, (error) => {
+      console.log(error);
+    })}
+    else{}
+  }
+  
+  }
 
 
-}
+

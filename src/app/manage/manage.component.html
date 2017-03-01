@@ -1,4 +1,4 @@
-<div class="body-container">
+<div class="body-container" >
     <h2 *ngIf="options.action === 'add'">ADD {{options.title}}</h2>
     <h2 *ngIf="options.action === 'edit'">EDIT {{options.title}}</h2>
 </div>
@@ -15,6 +15,26 @@
                 <br>
                 <md-input-container>
                     <input  md-input  [formControlName]="p.name" required name="{{p.name}}" [(ngModel)]="p.value" #spy>
+                </md-input-container>
+                <!-- <input type="text" [formControlName]="p.name" name="{{ p.name }}" [(ngModel)]="p.value"> -->
+                <div *ngIf="!formManage.controls[ p.name ].valid && !formManage.controls[ p.name ]._pristine">plz</div>
+                <!-- <br>TODO: remove this: {{spy.className}} -->
+            </div>
+            <div *ngIf="p.type === 'email'">
+                <label>{{ p.name }}</label>
+                <br>
+                <md-input-container>
+                    <input  md-input  type="email" [formControlName]="p.name" required name="{{p.name}}" [(ngModel)]="p.value" #spy>
+                </md-input-container>
+                <!-- <input type="text" [formControlName]="p.name" name="{{ p.name }}" [(ngModel)]="p.value"> -->
+                <div *ngIf="!formManage.controls[ p.name ].valid && !formManage.controls[ p.name ]._pristine">plz</div>
+                <!-- <br>TODO: remove this: {{spy.className}} -->
+            </div>
+            <div *ngIf="p.type === 'time'">
+                <label>{{ p.name }}</label>
+                <br>
+                <md-input-container>
+                    <input  md-input  type="time" [formControlName]="p.name" required name="{{p.name}}" [(ngModel)]="p.value" #spy>
                 </md-input-container>
                 <!-- <input type="text" [formControlName]="p.name" name="{{ p.name }}" [(ngModel)]="p.value"> -->
                 <div *ngIf="!formManage.controls[ p.name ].valid && !formManage.controls[ p.name ]._pristine">plz</div>
@@ -42,8 +62,28 @@
                 <option></option>
                 <option value="{{ s.value }}" *ngFor="let s of p.selections">{{ s.name }}</option>
             </select> -->
+            <br>
+            <br>
+
             </div>
-            <div *ngIf="p.type === 'selection'&& p.prop !== 'routes'">
+            <div *ngIf="p.type === 'selection'&& p.prop === 'qq'">
+                <!-- <label>{{ p.name }}</label> -->
+                
+                <br>
+                <md-select placeholder="{{ p.name }}" (ngModelChange)="onChange2($event)" [formControlName]="p.name" [(ngModel)]="p.value">
+                    <md-option *ngFor="let s of p.selections" [value]=" s.value " >
+                        {{ s.name }}
+                    </md-option>
+                </md-select>
+                <!-- <select>
+                <option></option>
+                <option value="{{ s.value }}" *ngFor="let s of p.selections">{{ s.name }}</option>
+            </select> -->
+            <br>
+            <br>
+
+            </div>
+            <div *ngIf="p.type === 'selection'&& p.prop !== 'routes' && p.prop !== 'qq'">
                 <!-- <label>{{ p.name }}</label> -->
                 <br>
                 <md-select placeholder="{{ p.name }}" [formControlName]="p.name" [(ngModel)]="p.value">
@@ -55,17 +95,32 @@
                 <option></option>
                 <option value="{{ s.value }}" *ngFor="let s of p.selections">{{ s.name }}</option>
             </select> -->
+            <br>
+            <br>
+
             </div>
-            <div *ngIf="p.type === 'file'">
+            <div *ngIf="p.type === 'file' && !Imggg ">
                 <input type="file" ngFileSelect [options]="picture" (onUpload)="handleUpload($event)" (beforeUpload)="beforeUpload($event)"> 
                 
-                Response: <img  class="place-img" *ngIf="uploadFile" [src]="'http://139.59.231.135/map/public/images/' + uploadFile.fileName"> 
+                Response: 
+                <md-card class="place-img" [style.width.px]="'300'">
+                <img  md-card-image *ngIf="uploadFile" [src]="'http://139.59.231.135/map/public/images/' + uploadFile.fileName"> 
+                </md-card>
+            <hr>
                 
             </div>
-            <hr>
         </div>
+        <div *ngIf="Imggg">
+            <md-card class="place-img" [style.width.px]="'300'">
+                    <img  md-card-image *ngIf="Imggg" [src]="'http://139.59.231.135/map/public/images/' + Imggg.fileName"> 
+                </md-card>
+                <button *ngIf="Imggg" md-button (click)="deletePic(Imggg.id)" class="md-raised md-primary">X</button>
+            <hr>
+            
+            </div>
+
         {{ formManage.valid }}
     </form>
-    <button *ngIf="options.action === 'add'" md-button (click)="add()" class="md-raised md-primary">Add</button>
+    <button [disabled]="!formManage.valid" *ngIf="options.action === 'add'" md-button (click)="add()" class="md-raised md-primary">Add</button>
     <button *ngIf="options.action === 'edit'" md-button (click)="edit()" class="md-raised md-primary">Edit</button>
 </div>

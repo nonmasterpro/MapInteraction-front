@@ -1,0 +1,1 @@
+<app-manage  *ngIf="user && user.roleName === 'admin'&& toggled" [options]="options" [detail]="data" (addEvent)="add($event)" (editEvent)="edit($event)" (changeEvent)="onChange($event)"></app-manage>

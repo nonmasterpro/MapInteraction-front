@@ -1,4 +1,4 @@
-<div class="body-content">
+<div class="body-content" >
   <h2 > Manage {{options.title}}</h2>
 
   <md-divider></md-divider>
@@ -8,7 +8,29 @@
         </a>
   </md-toolbar>
   <div class="list">
-    <h3 md-header>{{options.title}} list <button md-raised-button color="primary" [routerLink]="['add']"><i class="material-icons">add</i></button> </h3>
+  <div class="title">
+    <h3 md-header  style="float: left;">
+
+    {{options.title}} list 
+    
+    </h3>
+     &nbsp;
+
+
+      <button md-raised-button color="primary" [routerLink]="['add']"><i class="material-icons">add</i></button> 
+
+        <md-input-container floatingPlaceholder=false >
+            <span md-prefix><i class="material-icons">search</i></span>
+            <input md-input type="search"  [(ngModel)]="search" #input>
+        </md-input-container>
+
+        <md-select  placeholder="Type" *ngIf=" options.action === 'place' " [(ngModel)]="searchType"> 
+            <md-option *ngFor="let s of typess.selections" [value]=" s.value " >
+                          {{ s.name }}
+            </md-option>             
+        </md-select>
+  </div>
+
     <!-- Begin PlaceList,MemberList -->
     <table>
       <thead>
@@ -22,12 +44,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="row" *ngFor="let detail of details; let i=index">
+        <tr class="row" *ngFor="let detail of details | searchPipe:search:searchType; let i=index">
           <td>{{ i+1 }} </td>
           <td *ngFor="let header of options.params.headers">
             <div *ngIf=" header.type === 'image' ">
               <md-card class="place-img" *ngFor="let image of detail.images">
-                <img md-card-image [src]="'http://139.59.231.135/map/public/images/' + image['fileName']">
+                <a href="/place/detail/{{detail.id}}"><img md-card-image [src]="'http://139.59.231.135/map/public/images/' + image['fileName']"></a>
               </md-card>
             </div>
             <div *ngIf=" header.type === 'text' ">
@@ -45,6 +67,7 @@
           <td><button md-raised-button [routerLink]="['edit',detail.id]"><i class="material-icons">edit</i></button></td>
           <td><button md-raised-button (click)="delete(detail.id)" color="warn"><i class="material-icons">delete</i></button></td>
         </tr>
+        </tbody>
     </table>
     <!-- End PlaceList,MemberList -->
   </div>

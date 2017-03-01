@@ -5,7 +5,11 @@ let endpoints = {
     uploadImage: '/api/images',
     places: '/api/places',
     routes: '/api/routes',
-    stations: '/api/stations'
+    stations: '/api/stations',
+    schedule:'/api/schedules',
+    image:'/api/images'
+
+
 
 
 };

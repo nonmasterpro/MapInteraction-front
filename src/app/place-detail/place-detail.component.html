@@ -1,0 +1,22 @@
+<div *ngIf="user && user.roleName === 'admin'&& toggled" >
+<md-grid-list cols="2">
+    <md-grid-tile>
+        <md-card style="position: relative; top:-100px; left: 100px;">
+            <img md-card-image [src]="'http://139.59.231.135/map/public/images/' + data?.images[0]?.fileName">
+        </md-card>
+    </md-grid-tile>
+    <md-grid-tile>
+        <md-list style="position: relative; top:-100px;">
+            <md-list-item> Name : {{ data?.name }} </md-list-item>
+            <md-list-item> Description : {{ data?.description }} </md-list-item>
+            <md-list-item> Contact : {{ data?.contact }} </md-list-item>
+            <md-list-item> Bus Routes : {{ data?.bus_routes[0]?.name }} </md-list-item>
+            <md-list-item> Type : {{ data?.type }} </md-list-item>
+            <md-list-item> Contact : {{ data?.contact }} </md-list-item>
+            <md-list-item> Website : {{ data?.website }} </md-list-item>
+            <md-list-item> X : {{ data?.x }} </md-list-item>
+            <md-list-item> Y : {{ data?.y }} </md-list-item>
+        </md-list>
+    </md-grid-tile>
+</md-grid-list>
+</div>

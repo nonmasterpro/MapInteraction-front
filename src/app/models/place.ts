@@ -1,4 +1,5 @@
 import { Image } from './image';
+
 export class Place {
 	    constructor(
         public id: number,
